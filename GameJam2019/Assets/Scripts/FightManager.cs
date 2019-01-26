@@ -4,20 +4,20 @@ using TMPro;
 
 public class FightManager : MonoBehaviour
 {
-    [SerializeField] private float FightDuration = 120;
-    [SerializeField] private Text RemainingTimeText;
-    [SerializeField] private GameObject DeathmatchText;
-    [SerializeField] private TextMeshProUGUI VictoryText;
-    [SerializeField] private float DeathmatchMessegeTime = 2;
-    [SerializeField] private TextMeshProUGUI PlayerANameText;
-    [SerializeField] private TextMeshProUGUI PlayerBNameText;
-    [SerializeField] private TextMeshProUGUI PlayerAHitsText;
-    [SerializeField] private TextMeshProUGUI PlayerBHitsText;
-    [SerializeField] private bool IsTesting;
-    [SerializeField] private GameObject DefaultCharacterAPrefab;
-    [SerializeField] private GameObject DefaultCharacterBPrefab;
+    [SerializeField] private float fightDuration = 120;
+    [SerializeField] private Text remainingTimeText;
+    [SerializeField] private GameObject deathmatchText;
+    [SerializeField] private TextMeshProUGUI victoryText;
+    [SerializeField] private float deathmatchMessegeTime = 2;
+    [SerializeField] private TextMeshProUGUI playerANameText;
+    [SerializeField] private TextMeshProUGUI playerBNameText;
+    [SerializeField] private TextMeshProUGUI playerAHitsText;
+    [SerializeField] private TextMeshProUGUI playerBHitsText;
+    [SerializeField] private bool isTesting;
+    [SerializeField] private GameObject defaultCharacterAPrefab;
+    [SerializeField] private GameObject defaultCharacterBPrefab;
 
-    public static FightManager Instance;
+    public static FightManager Instance { get; private set; }
 
     [HideInInspector] public CharacterScript PlayerACharacter;
     [HideInInspector] public CharacterScript PlayerBCharacter;
@@ -31,23 +31,23 @@ public class FightManager : MonoBehaviour
         if (Instance == null)
             Instance = new FightManager();
 
-        if (IsTesting)
+        if (isTesting)
         {
-            this.PlayerACharacter = Instantiate(DefaultCharacterAPrefab).GetComponent<CharacterScript>();
-            this.PlayerBCharacter = Instantiate(DefaultCharacterBPrefab).GetComponent<CharacterScript>();
+            this.PlayerACharacter = Instantiate(defaultCharacterAPrefab).GetComponent<CharacterScript>();
+            this.PlayerBCharacter = Instantiate(defaultCharacterBPrefab).GetComponent<CharacterScript>();
         }
 
-        this.RemaingTime = FightDuration;
+        this.RemaingTime = fightDuration;
         this.UpdateRemaingTimeText(this.RemaingTime);
         this.OnDeathmatch = false;
-        this.DeathmatchText.SetActive(false);
+        this.deathmatchText.SetActive(false);
         this.DeathmatchTime = 0;
 
-        this.PlayerANameText.text = this.PlayerACharacter.Name;
-        this.PlayerBNameText.text = this.PlayerBCharacter.Name;
+        this.playerANameText.text = this.PlayerACharacter.Name;
+        this.playerBNameText.text = this.PlayerBCharacter.Name;
 
-        this.PlayerACharacter.HitsText = this.PlayerAHitsText;
-        this.PlayerBCharacter.HitsText = this.PlayerBHitsText;
+        this.PlayerACharacter.HitsText = this.playerAHitsText;
+        this.PlayerBCharacter.HitsText = this.playerBHitsText;
     }
 
     private void Update()
@@ -65,9 +65,9 @@ public class FightManager : MonoBehaviour
         else
         {
             this.DeathmatchTime += Time.deltaTime;
-            if(this.DeathmatchTime >= this.DeathmatchMessegeTime && this.DeathmatchText.activeInHierarchy)
+            if(this.DeathmatchTime >= this.deathmatchMessegeTime && this.deathmatchText.activeInHierarchy)
             {
-                this.DeathmatchText.SetActive(false);
+                this.deathmatchText.SetActive(false);
             }
         }
     }
@@ -75,7 +75,7 @@ public class FightManager : MonoBehaviour
     private void StartDeathmatch()
     {
         this.OnDeathmatch = true;
-        this.DeathmatchText.SetActive(true);
+        this.deathmatchText.SetActive(true);
         this.PlayerACharacter.Hits = 2;
         this.PlayerBCharacter.Hits = 2;
     }
@@ -84,11 +84,11 @@ public class FightManager : MonoBehaviour
     {
         if(remaingTime <= 0)
         {
-            this.RemainingTimeText.text = "00:00.00";
+            this.remainingTimeText.text = "00:00.00";
         }
         else
         {
-            this.RemainingTimeText.text = "0" + ((int)(remaingTime / 60)).ToString() + ":" + (((this.RemaingTime % 60) < 10) ? "0" : "") + (this.RemaingTime%60).ToString();
+            this.remainingTimeText.text = "0" + ((int)(remaingTime / 60)).ToString() + ":" + (((this.RemaingTime % 60) < 10) ? "0" : "") + (this.RemaingTime%60).ToString();
         }
     }
 
@@ -97,8 +97,8 @@ public class FightManager : MonoBehaviour
         character.Hits += 1;
         if (character.Hits == 3)
         {
-            this.VictoryText.text = character.Name;
-            this.VictoryText.gameObject.SetActive(true);
+            this.victoryText.text = character.Name;
+            this.victoryText.gameObject.SetActive(true);
             Debug.Log("Won " + character.Name);
         }
     }
