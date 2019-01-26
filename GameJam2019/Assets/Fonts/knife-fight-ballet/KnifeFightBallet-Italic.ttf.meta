@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 3aaf2ffa1c83c9d42b3102aa8a06839d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Knife Fight Ballet
+  fontNames:
+  - Knife Fight Ballet
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 2f47f8b9171d0484faec33ea98753164, type: 3}
+  - {fileID: 12800000, guid: 14a7da2ff25bb4b4198c98d99bef5016, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

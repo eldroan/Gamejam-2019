@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: dce4024692ff12942b6b40847a4b9a7c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Not Tuned TV
+  fontNames:
+  - Not Tuned TV
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 49af38ebf179e6e41af93c3d93b1e89b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
