@@ -13,9 +13,12 @@ public class CreditsMenuManager : MonoBehaviour
 
     // Text objects
     private List<TextMeshProUGUI> titleText;
+    private List<string> theTeam;
+    private List<string> theRoles;
 
     // Image objects
     private Image fadeImage;
+    private Image imageGGJ;
 
     // Audio objects
     [SerializeField] private AudioSource audioSource = null;
@@ -34,32 +37,44 @@ public class CreditsMenuManager : MonoBehaviour
         fadeImage = GameObject.Find("FadeImage").GetComponent<Image>();
         //buttonsPanel = GameObject.FindGameObjectWithTag("Canvas").GetComponentsInChildren<Button>().ToList();
         titleText = GameObject.FindGameObjectWithTag("Canvas").GetComponentsInChildren<TextMeshProUGUI>().ToList();
+        titleText[0].gameObject.SetActive(false);
+        titleText[1].gameObject.SetActive(false);
+        imageGGJ = GameObject.Find("GGJ").GetComponent<Image>();
         //titleText.RemoveRange(2, titleText.Count - 2);
         animations = GameObject.Find("Canvas").GetComponentsInChildren<Animator>().ToList();
+
+        theTeam = new List<string>();
+        theRoles = new List<string>();
+
+        theTeam.Add("leandro\namarillo");
+        theTeam.Add("guido\nbracalenti");
+        theTeam.Add("matias\ncordoba");
+        theTeam.Add("bruno andres\nscheffer");
+        theTeam.Add("matias\nmerino");
+
+        theRoles.Add("characters\ngame design\ndev");
+        theRoles.Add("game design\nsounds\ndev");
+        theRoles.Add("fireman\ndev");
+        theRoles.Add("animations\ngame design\ndev");
+        theRoles.Add("background menu art");
     }
 
     void Start()
     {
         StartCoroutine(GenericFunctions.FadeOutImage(.5f, fadeImage, 0f));
-
-        for (int i=0; i < animations.Count; i++)
-        {
-            animations[i].gameObject.SetActive(false);
-        }   
-        StartCoroutine(PlayMainMenuAnimation(animations[0], delay + 1.5f));
-        StartCoroutine(PlayMainMenuAnimation(animations[1], delay + 2.25f));
-
-        Invoke("EnableMenuButtons", 3.75f);
         StartCoroutine(GenericFunctions.FadeInSound(.5f, audioSource, 1f, .5f));
+
+        StartCoroutine(GenericFunctions.FadeInImage(1.25f, imageGGJ, delay));
+        StartCoroutine(GenericFunctions.FadeOutImage(1.25f, imageGGJ, delay + 1.75f));
+        StartCoroutine(GenericFunctions.ThisFunctionIsOnlyForGGJ(1f, titleText[0], theTeam, delay + 4, 2.75f, .75f));
+        StartCoroutine(GenericFunctions.ThisFunctionIsOnlyForGGJ(1f, titleText[1], theRoles, delay + 4, 2.75f, .75f));
+        StartCoroutine(GenericFunctions.FadeInImage(3f, imageGGJ, delay + 33f));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!buttonsEnabled)
-			return;
-
-		if (Input.GetKeyDown(KeyCode.Escape)) // Only for test mode
+		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
 		{
             audioSource.PlayOneShot(clipSelect);
             StartCoroutine(GenericFunctions.FadeOutSound(.75f, audioSource, 0f));
@@ -78,14 +93,4 @@ public class CreditsMenuManager : MonoBehaviour
         anim.SetTrigger("playAnim");
         yield return null;
     }
-
-    private void EnableMenuButtons()
-	{
-		//buttonsPanel[0].GetComponentInChildren<TextMeshProUGUI>().fontSize = buttonsPanel[0].GetComponentInChildren<TextMeshProUGUI>().fontSize * fontSizeFactor;
-		//buttonsPanel[0].GetComponentInChildren<VertexJitter>().ShakeText();
-        titleText[1].GetComponentInChildren<VertexJitter>().ShakeText();
-        titleText[1].fontSize = titleText[1].fontSize * fontSizeFactor;
-
-		buttonsEnabled = true;
-	}
 }

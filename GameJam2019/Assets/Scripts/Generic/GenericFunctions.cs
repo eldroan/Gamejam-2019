@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using TMPro;
+using TMPro.Examples;
 
 public class GenericFunctions : MonoBehaviour
 {
@@ -39,6 +40,23 @@ public class GenericFunctions : MonoBehaviour
 		}
 	}
 
+	// Fade in image with fade time and then load a new scene
+    public static IEnumerator FadeInImage(float fadeTime, Image img, float delayTime)
+	{
+		yield return new WaitForSeconds(delayTime);
+		if (!img.gameObject.activeSelf)
+        {
+            img.gameObject.SetActive(true);
+        }
+		
+		img.color = new Color(img.color.r, img.color.g, img.color.b, img.color.a);
+		while (img.color.a < 1f)
+		{
+			img.color = new Color(img.color.r, img.color.g, img.color.b, img.color.a + (Time.deltaTime / fadeTime));
+			yield return null;
+		}
+	}
+
 	// Fade in image with fade time and delay time
 	public static IEnumerator FadeOutImage(float fadeTime, Image img, float delayTime)
 	{
@@ -47,9 +65,8 @@ public class GenericFunctions : MonoBehaviour
             img.gameObject.SetActive(true);
         }
 
-		img.color = new Color(img.color.r, img.color.g, img.color.b, 1f);
-
 		yield return new WaitForSeconds(delayTime);
+		img.color = new Color(img.color.r, img.color.g, img.color.b, 1f);
 
 		while (img.color.a > 0f)
 		{
@@ -89,4 +106,39 @@ public class GenericFunctions : MonoBehaviour
         }
         audioSource.volume = minVolume;
     }
+
+	// ////////////////////////////////////////////////////////
+    // Text Processing Functions
+    // --------------------------------------------------------
+	public static IEnumerator ThisFunctionIsOnlyForGGJ(float fadeTime, TextMeshProUGUI text, List<string> whatIsay, float delayTime, float timeTextIn, float timeTextOut)
+	{
+		yield return new WaitForSeconds(delayTime);
+		if (!text.gameObject.activeSelf)
+		{
+			text.gameObject.SetActive(true);
+		}	
+	
+		for (int i=0; i < whatIsay.Count; i++)
+		{
+			text.GetComponentInChildren<VertexJitter>().ShakeText();
+			text.color = new Color(text.color.r, text.color.g, text.color.b, 0f);
+			text.text = whatIsay[i];
+			
+			while (text.color.a < 1f)
+			{
+				text.color = new Color(text.color.r, text.color.g, text.color.b, text.color.a + (Time.deltaTime / fadeTime));
+				yield return null;
+			}
+
+			yield return new WaitForSeconds(timeTextIn);
+
+			while (text.color.a > 0f)
+			{
+				text.color = new Color(text.color.r, text.color.g, text.color.b, text.color.a - (Time.deltaTime / fadeTime));
+				yield return null;
+			}
+
+			yield return new WaitForSeconds(timeTextOut);
+		}
+	}
 }

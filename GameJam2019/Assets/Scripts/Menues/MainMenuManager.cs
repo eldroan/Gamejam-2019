@@ -22,6 +22,7 @@ public class MainMenuManager : MonoBehaviour
 
     // Image objects
     private Image fadeImage;
+	private Image imageGGJ;
 
     // Animation objects
     private List<Animator> animations;
@@ -36,6 +37,7 @@ public class MainMenuManager : MonoBehaviour
         titleText = GameObject.FindGameObjectWithTag("Canvas").GetComponentsInChildren<TextMeshProUGUI>().ToList();
         titleText.RemoveRange(2, titleText.Count - 2);
         animations = GameObject.Find("Canvas").GetComponentsInChildren<Animator>().ToList();
+		imageGGJ = GameObject.Find("GGJ").GetComponent<Image>();
     }
 
     void Start()
@@ -56,6 +58,8 @@ public class MainMenuManager : MonoBehaviour
 
 		audioSource.PlayDelayed(.3f);	
 		StartCoroutine(GenericFunctions.FadeInSound(.4f, audioSource, 1f, .5f));
+		StartCoroutine(GenericFunctions.FadeInImage(1.25f, imageGGJ, delay + 5f));
+
     }
 
     // Update is called once per frame
