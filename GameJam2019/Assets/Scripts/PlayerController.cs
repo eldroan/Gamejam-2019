@@ -27,11 +27,12 @@ public class PlayerController : MonoBehaviour
     private Collider2D myHitObject;
 
     private string playerID { get; set; }
+    public string playerIDTest;
     public string PlayerID { get { return playerID; } set { this.playerID = value; SetTag(); } }
 
     private void Awake()
     {
-        if (ifTest) PlayerID = Constants.PLAYER_1_TAG;
+        if (ifTest) PlayerID = playerIDTest;
 
         myRigidbody2D = this.GetComponent<Rigidbody2D>();
         myRigidbody2D = this.GetComponent<Rigidbody2D>();
@@ -58,19 +59,19 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (Input.GetKeyUp(PlayerInputs.GetKey(playerID, Constants.LEFTH)) || Input.GetKeyUp(PlayerInputs.GetKey(playerID, Constants.RIGHT)))
+        if (PlayerInputs.GetAxisOrKey(playerID, Constants.LEFTH) || PlayerInputs.GetAxisOrKey(playerID, Constants.RIGHT))
         {
             this.Animator.SetBool("Walk", false);
 
         }
 
-        if (isGrounded && (Input.GetKeyDown(PlayerInputs.GetKey(playerID, Constants.JUMP))) && !bloking && !attacking)
+        if (isGrounded && PlayerInputs.GetKeyDown(playerID, Constants.JUMP) && !bloking && !attacking)
         {
             this.Animator.SetTrigger(Constants.JUMP);
             myRigidbody2D.velocity = new Vector3(0f, jumpForce, 0f);
         }
 
-        if (Input.GetKey(PlayerInputs.GetKey(playerID, Constants.LEFTH)) && !bloking && !attacking)
+        if (PlayerInputs.GetAxisOrKey(playerID, Constants.LEFTH) && !bloking && !attacking)
         {
             if (isGrounded)
             {
@@ -84,7 +85,7 @@ public class PlayerController : MonoBehaviour
             
             this.transform.rotation = new Quaternion(0f, 180f, 0f, 1f);
         }
-        else if (Input.GetKey(PlayerInputs.GetKey(playerID, Constants.RIGHT)) && !bloking && !attacking)
+        else if (PlayerInputs.GetAxisOrKey(playerID, Constants.RIGHT) && !bloking && !attacking)
         {
             if (isGrounded)
             {
@@ -105,21 +106,16 @@ public class PlayerController : MonoBehaviour
 
         }
 
-
-
-        if (Input.GetKeyDown(PlayerInputs.GetKey(playerID, Constants.ATTACK)) && remainingAttackDelay <= 0)
+        if (PlayerInputs.GetKeyDown(playerID, Constants.ATTACK) && remainingAttackDelay <= 0)
         {
             this.Animator.SetTrigger("Attack");
             this.remainingAttackDelay = this.attackDelay;
 
             this.attacking = true;
 
-            if (myHitObject != null)
-                myHitObject.enabled = true;
-
         }
 
-        if (Input.GetKeyDown(PlayerInputs.GetKey(playerID, Constants.BLOCK)) && remainingBlockDelay <= 0)
+        if (PlayerInputs.GetKeyDown(playerID, Constants.BLOCK) && remainingBlockDelay <= 0)
         {
             this.Animator.SetTrigger("Block");
             this.bloking = true;
@@ -145,7 +141,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag != this.gameObject.tag)
+        if (collision.tag != this.gameObject.tag && (collision.tag == Constants.PLAYER_1_TAG || collision.tag == Constants.PLAYER_2_TAG))
         {
             if (bloking)
             {
@@ -156,6 +152,7 @@ public class PlayerController : MonoBehaviour
                 if (!attacking)
                 {
                     FightManager.Instance.OnPlayerHit(playerID == Constants.PLAYER_1_TAG ? Constants.PLAYER_1_TAG : Constants.PLAYER_2_TAG);
+                    collision.enabled = false;
                 }
             }
         }
@@ -173,6 +170,12 @@ public class PlayerController : MonoBehaviour
 
     public void InBlockBlock()
     {
+    }
+
+    public void Attack()
+    {
+        if (myHitObject != null)
+            myHitObject.enabled = true;
     }
 
     public void EndBlock()

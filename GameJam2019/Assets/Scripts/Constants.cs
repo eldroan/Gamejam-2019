@@ -12,4 +12,8 @@ public static class Constants
     public const string LEFTH = "Left";
     public const string ATTACK = "Attack";
     public const string BLOCK = "Block";
+    public const string SELECT = "Select";
+    public const string UP = "Up";
+    public const string DOWN = "Down";
+    public const string ESCAPE = "Escape";
 }

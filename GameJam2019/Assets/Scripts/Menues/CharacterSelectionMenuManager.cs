@@ -72,7 +72,7 @@ public class CharacterSelectionMenuManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     { 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (PlayerInputs.GetKeyDown(Constants.PLAYER_1_TAG, Constants.ESCAPE))
         {
             StartCoroutine(GenericFunctions.FadeOutSound(.75f, audioSource, 0f));
             StartCoroutine(GenericFunctions.FadeInImage(.75f, fadeImage, "MainMenu"));
@@ -98,32 +98,32 @@ public class CharacterSelectionMenuManager : MonoBehaviour
 
         timerText.text = ((int)timer).ToString();
 
-        if (Input.GetKeyDown(KeyCode.A) && !player1selected)
+        if (PlayerInputs.GetKeyDown(Constants.PLAYER_1_TAG, Constants.LEFTH) && !player1selected)
         {
             PreviousCharacterPlayer1();
         }
 
-        if (Input.GetKeyDown(KeyCode.D) && !player1selected)
+        if (PlayerInputs.GetKeyDown(Constants.PLAYER_1_TAG, Constants.RIGHT) && !player1selected)
         {
             NextCharacterPlayer1();
         }
 
-        if (Input.GetKeyDown(KeyCode.J) && !player2selected)
+        if (PlayerInputs.GetKeyDown(Constants.PLAYER_2_TAG, Constants.LEFTH) && !player2selected)
         {
             PreviousCharacterPlayer2();
         }
 
-        if (Input.GetKeyDown(KeyCode.L) && !player2selected)
+        if (PlayerInputs.GetKeyDown(Constants.PLAYER_2_TAG, Constants.RIGHT) && !player2selected)
         {
             NextCharacterPlayer2();
         }
 
-        if (Input.GetKeyDown(KeyCode.V) && !player1selected)
+        if (PlayerInputs.GetKeyDown(Constants.PLAYER_1_TAG, Constants.SELECT) && !player1selected)
         {
             SelectCharacterPlayer1();
         }
 
-        if (Input.GetKeyDown(KeyCode.RightShift) && !player2selected)
+        if (PlayerInputs.GetKeyDown(Constants.PLAYER_2_TAG, Constants.SELECT) && !player2selected)
         {
             SelectCharacterPlayer2();
         }

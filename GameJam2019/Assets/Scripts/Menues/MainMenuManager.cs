@@ -65,7 +65,7 @@ public class MainMenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKeyDown(KeyCode.Escape)) // Only for test mode
+		if (PlayerInputs.GetKeyDown(Constants.PLAYER_1_TAG, Constants.ESCAPE)) // Only for test mode
 		{
 			Application.Quit();
 		}
@@ -73,19 +73,19 @@ public class MainMenuManager : MonoBehaviour
 		if (!buttonsEnabled)
 			return;
 
-		if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+		if (PlayerInputs.GetKeyDown(Constants.PLAYER_1_TAG, Constants.DOWN))
 		{
 			EnableNextMenuButton();
 			return;
 		}
 
-		if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+		if (PlayerInputs.GetKeyDown(Constants.PLAYER_1_TAG, Constants.UP))
 		{
 			EnablePreviousMenuButton();
 			return;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+		if (PlayerInputs.GetKeyDown(Constants.PLAYER_1_TAG, Constants.SELECT))
 		{
 			SelectMenuButton();
 		}

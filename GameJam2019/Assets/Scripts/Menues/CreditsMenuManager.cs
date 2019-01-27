@@ -102,7 +102,7 @@ public class CreditsMenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+		if (PlayerInputs.GetKeyDown(Constants.PLAYER_1_TAG, Constants.ESCAPE) || PlayerInputs.GetKeyDown(Constants.PLAYER_1_TAG, Constants.SELECT) || PlayerInputs.GetKeyDown(Constants.PLAYER_1_TAG, Constants.ATTACK))
 		{
             audioSource.PlayOneShot(clipSelect);
             StartCoroutine(GenericFunctions.FadeOutSound(.75f, audioSource, 0f));
