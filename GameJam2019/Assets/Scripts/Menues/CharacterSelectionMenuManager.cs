@@ -89,22 +89,22 @@ public class CharacterSelectionMenuManager : MonoBehaviour
 
         timerText.text = ((int)timer).ToString();
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) && !player1selected)
         {
             PreviousCharacterPlayer1();
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) && !player1selected)
         {
             NextCharacterPlayer1();
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J) && !player2selected)
         {
             PreviousCharacterPlayer2();
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L) && !player2selected)
         {
             NextCharacterPlayer2();
         }
