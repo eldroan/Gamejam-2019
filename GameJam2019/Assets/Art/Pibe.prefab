@@ -138,7 +138,7 @@ MonoBehaviour:
   attackDelay: 5
   blockDelay: 5
   ifTest: 0
-  speed: 30
+  speed: 9
   jumpForce: 17
   Animator: {fileID: 4472835734570499953}
   bluntObject: {fileID: 0}
