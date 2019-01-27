@@ -59,14 +59,14 @@ public class PlayerController : MonoBehaviour
 		var playerB = CharacterBundle.Instance.GetCharacter(Session.Instance.PlayerB);
 
 		clipJumpPlayerA = playerA.jump;
-		clipJumpPlayerA = playerA.attack1;
-		clipJumpPlayerA = playerA.attack2;
-		clipJumpPlayerA = playerA.block;
+        clipAttackPlayerA1 = playerA.attack1;
+        clipAttackPlayerA2 = playerA.attack2;
+        clipBlockPlayerA = playerA.block;
 
 		clipJumpPlayerB = playerB.jump;
-		clipJumpPlayerB = playerB.attack1;
-		clipJumpPlayerB = playerB.attack2;
-		clipJumpPlayerB = playerB.block;
+        clipAttackPlayerB1 = playerB.attack1;
+        clipAttackPlayerB2 = playerB.attack2;
+        clipBlockPlayerB = playerB.block;
 	}
 
     private void SetTag()
@@ -146,29 +146,29 @@ public class PlayerController : MonoBehaviour
 
         if (PlayerInputs.GetKeyDown(playerID, Constants.ATTACK) && remainingAttackDelay <= 0)
         {
-			int randomNumber = Random.Range(0, 2);
-			if (playerID == Constants.PLAYER_1_TAG)
-			{
-				if (randomNumber >= 1f)
-				{
-					audioSource.PlayOneShot(clipAttackPlayerA1);
-				}
-				else
-				{
-					audioSource.PlayOneShot(clipAttackPlayerA2);
-				}
-			}
-			else
-			{
-				if (randomNumber >= 1f)
-				{
-					audioSource.PlayOneShot(clipAttackPlayerB1);
-				}
-				else
-				{
-					audioSource.PlayOneShot(clipAttackPlayerB2);
-				}
-			}
+			//int randomNumber = Random.Range(0, 2);
+			//if (playerID == Constants.PLAYER_1_TAG)
+			//{
+			//	if (randomNumber >= 1f)
+			//	{
+			//		audioSource.PlayOneShot(clipAttackPlayerA1);
+			//	}
+			//	else
+			//	{
+			//		audioSource.PlayOneShot(clipAttackPlayerA2);
+			//	}
+			//}
+			//else
+			//{
+			//	if (randomNumber >= 1f)
+			//	{
+			//		audioSource.PlayOneShot(clipAttackPlayerB1);
+			//	}
+			//	else
+			//	{
+			//		audioSource.PlayOneShot(clipAttackPlayerB2);
+			//	}
+			//}
 			this.Animator.SetTrigger("Attack");
             this.remainingAttackDelay = this.attackDelay;
 
@@ -178,15 +178,6 @@ public class PlayerController : MonoBehaviour
 
         if (PlayerInputs.GetKeyDown(playerID, Constants.BLOCK) && remainingBlockDelay <= 0)
         {
-			if (playerID == Constants.PLAYER_1_TAG)
-			{
-				audioSource.PlayOneShot(clipBlockPlayerA);
-			}
-			else
-			{
-				audioSource.PlayOneShot(clipBlockPlayerB);
-			}
-
 			this.Animator.SetTrigger("Block");
             this.bloking = true;
             this.remainingBlockDelay = this.blockDelay;
@@ -215,7 +206,14 @@ public class PlayerController : MonoBehaviour
         {
             if (bloking)
             {
-                //TODO ruido bloquear
+                if (playerID == Constants.PLAYER_1_TAG)
+                {
+                    audioSource.PlayOneShot(clipBlockPlayerA);
+                }
+                else
+                {
+                    audioSource.PlayOneShot(clipBlockPlayerB);
+                }
             }
             else
             {
@@ -250,6 +248,29 @@ public class PlayerController : MonoBehaviour
             var go = Instantiate(bluntObject, bluntObjectSpawnPosition.position + new Vector3(0f, 0f, 0.01f), this.transform.rotation);
             go.tag = this.gameObject.tag;
             go.GetComponent<BluntObject>()?.Shoot();
+            int randomNumber = Random.Range(0, 2);
+            if (playerID == Constants.PLAYER_1_TAG)
+            {
+                if (randomNumber >= 1f)
+                {
+                    audioSource.PlayOneShot(clipAttackPlayerA1);
+                }
+                else
+                {
+                    audioSource.PlayOneShot(clipAttackPlayerA2);
+                }
+            }
+            else
+            {
+                if (randomNumber >= 1f)
+                {
+                    audioSource.PlayOneShot(clipAttackPlayerB1);
+                }
+                else
+                {
+                    audioSource.PlayOneShot(clipAttackPlayerB2);
+                }
+            }
         }
     }
 
@@ -261,6 +282,29 @@ public class PlayerController : MonoBehaviour
     {
         if (myHitObject != null)
             myHitObject.enabled = true;
+        int randomNumber = Random.Range(0, 2);
+        if (playerID == Constants.PLAYER_1_TAG)
+        {
+            if (randomNumber >= 1f)
+            {
+                audioSource.PlayOneShot(clipAttackPlayerA1);
+            }
+            else
+            {
+                audioSource.PlayOneShot(clipAttackPlayerA2);
+            }
+        }
+        else
+        {
+            if (randomNumber >= 1f)
+            {
+                audioSource.PlayOneShot(clipAttackPlayerB1);
+            }
+            else
+            {
+                audioSource.PlayOneShot(clipAttackPlayerB2);
+            }
+        }
     }
 
     public void EndBlock()
