@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private float attackDelay = 5f;
+    [SerializeField] private float blockDelay = 5f;
+
     [SerializeField] private float speed = 30f;    
     [SerializeField] private float jumpForce = 17f;
     [SerializeField] private Animator Animator;
+    [Tooltip("(Opcional) - Objeto contundente para arrojar.")]
+    [SerializeField] private GameObject bluntObject;
+    [Tooltip("(Opcional) - Si hay objeto contundente hay que setear de donde sale.")]
+    [SerializeField] private Transform bluntObjectSpawnPosition;
 
     private Rigidbody2D myRigidbody2D;
     private bool isGrounded;
+
+    private float remainingAttackDelay;
+    private float remainingBlockDelay;
 
     private void Awake()
     {
@@ -19,6 +29,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (remainingAttackDelay > 0)
+            remainingBlockDelay -= Time.deltaTime;
+        if (remainingBlockDelay > 0)
+                remainingBlockDelay -= Time.deltaTime;
+
         if (isGrounded && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)))
         {
             this.Animator.SetTrigger("Jump");
@@ -56,6 +71,7 @@ public class PlayerController : MonoBehaviour
         {
             myRigidbody2D.velocity = new Vector3(0f, myRigidbody2D.velocity.y, 0f);
         }
+
         if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
         {
             this.Animator.SetTrigger("StopWalk");
@@ -65,6 +81,23 @@ public class PlayerController : MonoBehaviour
             this.Animator.SetTrigger("StopWalk");
         }
 
+        if (Input.GetKeyDown(KeyCode.Z) && remainingAttackDelay <= 0)
+        {
+            this.Animator.SetTrigger("Attack");
+            this.remainingAttackDelay = this.attackDelay;
+
+            if (bluntObject != null)
+            {
+                var go = Instantiate(bluntObject, bluntObjectSpawnPosition.position, this.transform.rotation);
+                go.GetComponent<BluntObject>()?.Shoot();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.X) && remainingBlockDelay <= 0)
+        {
+            this.Animator.SetTrigger("Block");
+            this.remainingBlockDelay = this.blockDelay;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -24,6 +24,8 @@ public class CharacterBundle : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        DontDestroyOnLoad(this);
     }
 
     public Character GetCharacter(CharacterType id)

@@ -19,8 +19,8 @@ public class FightManager : MonoBehaviour
 
     public static FightManager Instance { get; private set; }
 
-    [HideInInspector] public CharacterScript PlayerACharacter;
-    [HideInInspector] public CharacterScript PlayerBCharacter;
+    //[HideInInspector] public CharacterScript PlayerACharacter;
+    //[HideInInspector] public CharacterScript PlayerBCharacter;
 
     private float RemaingTime;
     private bool OnDeathmatch;
@@ -31,23 +31,35 @@ public class FightManager : MonoBehaviour
         if (Instance == null)
             Instance = new FightManager();
 
-        if (isTesting)
+        //if (isTesting)
+        //{
+        //    this.PlayerACharacter = Instantiate(defaultCharacterAPrefab).GetComponent<CharacterScript>();
+        //    this.PlayerBCharacter = Instantiate(defaultCharacterBPrefab).GetComponent<CharacterScript>();
+        //}
+
+        if (Session.Instance != null)
         {
-            this.PlayerACharacter = Instantiate(defaultCharacterAPrefab).GetComponent<CharacterScript>();
-            this.PlayerBCharacter = Instantiate(defaultCharacterBPrefab).GetComponent<CharacterScript>();
+            var a = CharacterBundle.Instance.GetCharacter(Session.Instance.PlayerA);
+            var b = CharacterBundle.Instance.GetCharacter(Session.Instance.PlayerB);
+
+            var ao = Instantiate(a.Prefab);
+            var bo = Instantiate(b.Prefab);
+
+            ao.tag = "Player 1";
+            bo.tag = "Player 2";
+
+            this.RemaingTime = fightDuration;
+            this.UpdateRemaingTimeText(this.RemaingTime);
+            this.OnDeathmatch = false;
+            this.deathmatchText.SetActive(false);
+            this.DeathmatchTime = 0;
+
+            this.playerANameText.text = a.Name;
+            this.playerBNameText.text = b.Name;
+
+            //this.PlayerACharacter.HitsText = this.playerAHitsText;
+            //this.PlayerBCharacter.HitsText = this.playerBHitsText;
         }
-
-        this.RemaingTime = fightDuration;
-        this.UpdateRemaingTimeText(this.RemaingTime);
-        this.OnDeathmatch = false;
-        this.deathmatchText.SetActive(false);
-        this.DeathmatchTime = 0;
-
-        this.playerANameText.text = this.PlayerACharacter.Name;
-        this.playerBNameText.text = this.PlayerBCharacter.Name;
-
-        this.PlayerACharacter.HitsText = this.playerAHitsText;
-        this.PlayerBCharacter.HitsText = this.playerBHitsText;
     }
 
     private void Update()
@@ -76,8 +88,8 @@ public class FightManager : MonoBehaviour
     {
         this.OnDeathmatch = true;
         this.deathmatchText.SetActive(true);
-        this.PlayerACharacter.Hits = 2;
-        this.PlayerBCharacter.Hits = 2;
+        //this.PlayerACharacter.Hits = 2;
+        //this.PlayerBCharacter.Hits = 2;
     }
 
     private void UpdateRemaingTimeText(float remaingTime)

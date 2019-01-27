@@ -1,0 +1,477 @@
+fileFormatVersion: 2
+guid: 1994e3035511f69428a060cdbd5bfa56
+ScriptedImporter:
+  fileIDToRecycleName:
+    100000: Capa 2_GO/Capa 2_GO
+    100002: Capa 2_GO/Capa 2_GO/Capa 2
+    100004: Capa 2_GO/Capa 2_GO/Control1
+    100006: Capa 2_GO/Capa 2_GO/Control1_1
+    100008: Capa 2_GO/Capa 2_GO/Control2
+    100010: Capa 2_GO/Capa 2_GO/Control2_1
+    100012: Capa 2_GO/Capa 2_GO/Control3
+    100014: Capa 2_GO/Capa 2_GO/Control3_1
+    100016: 'Capa 2_GO/Capa 2_GO/Fondo '
+    100018: Capa 2_GO/Capa 2_GO/Fondo _1
+    100020: Capa 2_GO/Capa 2_GO/Image
+    100022: Capa 2_GO/Capa 2_GO/Image_1
+    400000: Capa 2_GO/Capa 2_GO/Transform
+    400002: Capa 2_GO/Capa 2_GO/Capa 2/Transform
+    400004: Capa 2_GO/Capa 2_GO/Control1/Transform
+    400006: Capa 2_GO/Capa 2_GO/Control1_1/Transform
+    400008: Capa 2_GO/Capa 2_GO/Control2/Transform
+    400010: Capa 2_GO/Capa 2_GO/Control2_1/Transform
+    400012: Capa 2_GO/Capa 2_GO/Control3/Transform
+    400014: Capa 2_GO/Capa 2_GO/Control3_1/Transform
+    400016: Capa 2_GO/Capa 2_GO/Fondo /Transform
+    400018: Capa 2_GO/Capa 2_GO/Fondo _1/Transform
+    400020: Capa 2_GO/Capa 2_GO/Image/Transform
+    400022: Capa 2_GO/Capa 2_GO/Image_1/Transform
+    2800000: FightUI
+    21200000: Capa 2_GO/Capa 2_GO/Capa 2/SpriteRenderer
+    21200002: Capa 2_GO/Capa 2_GO/Control1/SpriteRenderer
+    21200004: Capa 2_GO/Capa 2_GO/Control1_1/SpriteRenderer
+    21200006: Capa 2_GO/Capa 2_GO/Control2/SpriteRenderer
+    21200008: Capa 2_GO/Capa 2_GO/Control2_1/SpriteRenderer
+    21200010: Capa 2_GO/Capa 2_GO/Control3/SpriteRenderer
+    21200012: Capa 2_GO/Capa 2_GO/Control3_1/SpriteRenderer
+    21200014: Capa 2_GO/Capa 2_GO/Fondo /SpriteRenderer
+    21200016: Capa 2_GO/Capa 2_GO/Fondo _1/SpriteRenderer
+    21200018: Capa 2_GO/Capa 2_GO/Image/SpriteRenderer
+    21200020: Capa 2_GO/Capa 2_GO/Image_1/SpriteRenderer
+    21300000: Image
+    21300002: Control3
+    21300004: Control2
+    21300006: Control1
+    21300008: 'Fondo '
+    21300010: Image_1
+    21300012: Control3_1
+    21300014: Control2_1
+    21300016: Control1_1
+    21300018: Fondo _1
+    21300020: Capa 2
+    100100000: Capa 2_GO
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 0, y: 0}
+  mosaicSpriteImportData: []
+  rigSpriteImportData:
+  - name: Image
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1602
+      width: 452
+      height: 453
+    spriteID: 1a5fd824233f99c429e12a6becb68954
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -246, y: 157}
+  - name: Control3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1205
+      y: 1254
+      width: 722
+      height: 249
+    spriteID: 6f34207d5e0f679408003935e80cc423
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 217, y: -259}
+  - name: Control2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 464
+      y: 1602
+      width: 722
+      height: 249
+    spriteID: c7cd520ac0c864743bdd114441beb13b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -359, y: 88}
+  - name: Control1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 464
+      y: 1859
+      width: 722
+      height: 249
+    spriteID: fc032d7ac2b9bff4fa220cc2f2cc5e75
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -190, y: 345}
+  - name: 'Fondo '
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 1723
+      height: 617
+    spriteID: 791b0f05a1785184d99b8a0f1ff86d6d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -163, y: -1360}
+  - name: Image_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 2063
+      width: 452
+      height: 453
+    spriteID: ed55655b1d091464cae8f9b4d96cfcef
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -1374, y: 1250}
+  - name: Control3_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 464
+      y: 2116
+      width: 722
+      height: 249
+    spriteID: 63d1cb4e5b766514d8973419d3ec4082
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 94, y: 1235}
+  - name: Control2_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 464
+      y: 2373
+      width: 722
+      height: 249
+    spriteID: 1eef4478bbea07c4e9e5a6c941163e31
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -71, y: 1491}
+  - name: Control1_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 464
+      y: 2630
+      width: 722
+      height: 249
+    spriteID: b50c8669e1d180b41b92eeb900b7c746
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -240, y: 1748}
+  - name: Fondo _1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 629
+      width: 1723
+      height: 617
+    spriteID: f6249cfd542e4e244b35aff4415dae7e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -186, y: -103}
+  - name: Capa 2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1254
+      width: 1193
+      height: 340
+    spriteID: 13b917cb709c12f4db7b8e3512be15bb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -424, y: 1004}
+  platformSettings: []
+  mosaicLayers: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  importedTextureWidth: 1024
+  importedTextureHeight: 2048
+  documentSize: {x: 2048, y: 2048}
+  textureActualWidth: 2048
+  textureActualHeight: 4096
+  spritePackingTag: 
+  resliceFromLayer: 0
+  characterMode: 1
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: Leftlifebar
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 
+    layerID: 18
+    mosaicPosition: {x: 0, y: 0}
+  - name: Image
+    spriteName: Image
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 1a5fd824233f99c429e12a6becb68954
+    layerID: 17
+    mosaicPosition: {x: 4, y: 1602}
+  - name: Control3
+    spriteName: Control3
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 6f34207d5e0f679408003935e80cc423
+    layerID: 16
+    mosaicPosition: {x: 1205, y: 1254}
+  - name: Control2
+    spriteName: Control2
+    isGroup: 0
+    parentIndex: 0
+    spriteID: c7cd520ac0c864743bdd114441beb13b
+    layerID: 15
+    mosaicPosition: {x: 464, y: 1602}
+  - name: Control1
+    spriteName: Control1
+    isGroup: 0
+    parentIndex: 0
+    spriteID: fc032d7ac2b9bff4fa220cc2f2cc5e75
+    layerID: 14
+    mosaicPosition: {x: 464, y: 1859}
+  - name: 'Fondo '
+    spriteName: 'Fondo '
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 791b0f05a1785184d99b8a0f1ff86d6d
+    layerID: 13
+    mosaicPosition: {x: 4, y: 4}
+  - name: Rightlifebar
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 
+    layerID: 11
+    mosaicPosition: {x: 0, y: 0}
+  - name: Image
+    spriteName: Image_1
+    isGroup: 0
+    parentIndex: 6
+    spriteID: ed55655b1d091464cae8f9b4d96cfcef
+    layerID: 10
+    mosaicPosition: {x: 4, y: 2063}
+  - name: Control3
+    spriteName: Control3_1
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 63d1cb4e5b766514d8973419d3ec4082
+    layerID: 9
+    mosaicPosition: {x: 464, y: 2116}
+  - name: Control2
+    spriteName: Control2_1
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 1eef4478bbea07c4e9e5a6c941163e31
+    layerID: 8
+    mosaicPosition: {x: 464, y: 2373}
+  - name: Control1
+    spriteName: Control1_1
+    isGroup: 0
+    parentIndex: 6
+    spriteID: b50c8669e1d180b41b92eeb900b7c746
+    layerID: 7
+    mosaicPosition: {x: 464, y: 2630}
+  - name: 'Fondo '
+    spriteName: Fondo _1
+    isGroup: 0
+    parentIndex: 6
+    spriteID: f6249cfd542e4e244b35aff4415dae7e
+    layerID: 6
+    mosaicPosition: {x: 4, y: 629}
+  - name: Capa 2
+    spriteName: Capa 2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 13b917cb709c12f4db7b8e3512be15bb
+    layerID: 4
+    mosaicPosition: {x: 4, y: 1254}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+  boneGOs: []
+  generateGOHierarchy: 0
