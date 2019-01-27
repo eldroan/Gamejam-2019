@@ -228,7 +228,19 @@ public class PlayerController : MonoBehaviour
                         collision.enabled = false;
                 }
             }
+            var chancleta = collision.gameObject.GetComponent<BluntObject>();
+
+            if (chancleta != null)
+            {
+                Debug.Log("Le pego una chancleta");
+                Destroy(collision.gameObject);
+            }
+            else
+            {
+                Debug.Log("Le pego otra cosa");
+            }
         }
+        
     }
 
     public void InAttackMoment()
