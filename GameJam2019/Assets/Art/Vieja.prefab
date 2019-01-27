@@ -39,7 +39,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8306032822711634619}
-  - component: {fileID: 2002748440780300042}
   - component: {fileID: 6889267744464187993}
   - component: {fileID: 9068428150084289253}
   - component: {fileID: 2283780740955352366}
@@ -66,20 +65,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2002748440780300042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1394785373890644960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 084c07a88a9027e4384a455447963a6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Abuela
-  HitsText: {fileID: 0}
 --- !u!114 &6889267744464187993
 MonoBehaviour:
   m_ObjectHideFlags: 0
