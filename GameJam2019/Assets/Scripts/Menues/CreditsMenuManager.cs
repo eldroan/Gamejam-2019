@@ -13,12 +13,16 @@ public class CreditsMenuManager : MonoBehaviour
 
     // Text objects
     private List<TextMeshProUGUI> titleText;
-    private List<string> theTeam;
-    private List<string> theRoles;
+    private List<string> theTeamA;
+    private List<string> theRolesA;
+    private List<string> theTeamB;
+    private List<string> theRolesB;
 
     // Image objects
     private Image fadeImage;
     private Image imageGGJ;
+    private List<Image> theTeamImagesA;
+    private List<Image> theTeamImagesB;
 
     // Audio objects
     [SerializeField] private AudioSource audioSource = null;
@@ -37,38 +41,62 @@ public class CreditsMenuManager : MonoBehaviour
         fadeImage = GameObject.Find("FadeImage").GetComponent<Image>();
         //buttonsPanel = GameObject.FindGameObjectWithTag("Canvas").GetComponentsInChildren<Button>().ToList();
         titleText = GameObject.FindGameObjectWithTag("Canvas").GetComponentsInChildren<TextMeshProUGUI>().ToList();
-        titleText[0].gameObject.SetActive(false);
-        titleText[1].gameObject.SetActive(false);
         imageGGJ = GameObject.Find("GGJ").GetComponent<Image>();
         //titleText.RemoveRange(2, titleText.Count - 2);
         animations = GameObject.Find("Canvas").GetComponentsInChildren<Animator>().ToList();
+        theTeamImagesA = GameObject.Find("TheTeamA").GetComponentsInChildren<Image>().ToList();
+        theTeamImagesB = GameObject.Find("TheTeamB").GetComponentsInChildren<Image>().ToList();
 
-        theTeam = new List<string>();
-        theRoles = new List<string>();
+        theTeamA = new List<string>();
+        theRolesA = new List<string>();
+        theTeamB = new List<string>();
+        theRolesB = new List<string>();
 
-        theTeam.Add("leandro\namarillo");
-        theTeam.Add("guido\nbracalenti");
-        theTeam.Add("matias\ncordoba");
-        theTeam.Add("bruno andres\nscheffer");
-        theTeam.Add("matias\nmerino");
+        theTeamA.Add("leandro\namarillo");
+        theTeamB.Add("guido\nbracalenti");
+        theTeamA.Add("matias\ncordoba");
+        theTeamB.Add("bruno andres\nscheffer");
+        theTeamA.Add("matias\nmerino");
 
-        theRoles.Add("characters\ngame design\ndev");
-        theRoles.Add("sounds\ngame design\ndev");
-        theRoles.Add("fireman\ngame design\ndev");
-        theRoles.Add("animations\ngame design\ndev");
-        theRoles.Add("background menu art");
+        theRolesA.Add("characters\ngame design\ndev");
+        theRolesB.Add("sounds\ngame design\ndev");
+        theRolesA.Add("fireman\ngame design\ndev");
+        theRolesB.Add("animations\ngame design\ndev");
+        theRolesA.Add("background art");
     }
 
     void Start()
     {
+        for (int i=0; i < theTeamImagesA.Count; i++)
+        {
+            theTeamImagesA[i].gameObject.SetActive(false);
+        }
+
+        for (int i=0; i < theTeamImagesB.Count; i++)
+        {
+            theTeamImagesB[i].gameObject.SetActive(false);
+        }
+
+        for (int i=0; i < titleText.Count; i++)
+        {
+            titleText[i].gameObject.SetActive(false);
+        }
+
         StartCoroutine(GenericFunctions.FadeOutImage(.5f, fadeImage, 0f));
         StartCoroutine(GenericFunctions.FadeInSound(.5f, audioSource, 1f, .5f));
 
         StartCoroutine(GenericFunctions.FadeInImage(1.25f, imageGGJ, delay));
-        StartCoroutine(GenericFunctions.FadeOutImage(1.25f, imageGGJ, delay + 1.75f));
-        StartCoroutine(GenericFunctions.ThisFunctionIsOnlyForGGJ(1f, titleText[0], theTeam, delay + 4, 2.75f, .75f));
-        StartCoroutine(GenericFunctions.ThisFunctionIsOnlyForGGJ(1f, titleText[1], theRoles, delay + 4, 2.75f, .75f));
-        StartCoroutine(GenericFunctions.FadeInImage(3f, imageGGJ, delay + 33f));
+        StartCoroutine(GenericFunctions.FadeOutImage(1.25f, imageGGJ, delay + 2.5f));
+        StartCoroutine(GenericFunctions.FadeInImage(3f, imageGGJ, delay + 42f));
+
+        StartCoroutine(GenericFunctions.ThisFunctionIsOnlyForGGJ(1f, titleText[0], theTeamA, delay + 5, 3f, 9f));
+        StartCoroutine(GenericFunctions.ThisFunctionIsOnlyForGGJ(1f, titleText[1], theRolesA, delay + 5, 3f, 9f));
+        StartCoroutine(GenericFunctions.SuperFadeInImage(1f, theTeamImagesA, delay + 5, 3f, 9f));
+
+        StartCoroutine(GenericFunctions.ThisFunctionIsOnlyForGGJ(1f, titleText[2], theTeamB, delay + 12f, 3f, 9f));
+        StartCoroutine(GenericFunctions.ThisFunctionIsOnlyForGGJ(1f, titleText[3], theRolesB, delay + 12f, 3f, 9f));
+        StartCoroutine(GenericFunctions.SuperFadeInImage(1f, theTeamImagesB, delay + 12f, 3f, 9f));
+        
     }
 
     // Update is called once per frame

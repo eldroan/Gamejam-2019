@@ -80,6 +80,35 @@ public class GenericFunctions : MonoBehaviour
 		}
 	}
 
+	public static IEnumerator SuperFadeInImage(float fadeTime, List<Image> image, float delayTime, float timeTextIn, float timeTextOut)
+	{
+		yield return new WaitForSeconds(delayTime);
+		for (int i=0; i < image.Count; i++)
+		{
+			if (!image[i].gameObject.activeSelf)
+			{
+				image[i].gameObject.SetActive(true);
+			}
+			image[i].color = new Color(image[i].color.r, image[i].color.g, image[i].color.b, 0f);
+			
+			while (image[i].color.a < 1f)
+			{
+				image[i].color = new Color(image[i].color.r, image[i].color.g, image[i].color.b, image[i].color.a + (Time.deltaTime / fadeTime));
+				yield return null;
+			}
+
+			yield return new WaitForSeconds(timeTextIn);
+
+			while (image[i].color.a > 0f)
+			{
+				image[i].color = new Color(image[i].color.r, image[i].color.g, image[i].color.b, image[i].color.a - (Time.deltaTime / fadeTime));
+				yield return null;
+			}
+
+			yield return new WaitForSeconds(timeTextOut);
+		}
+	}
+
 	// ////////////////////////////////////////////////////////
     // Audio Processing Functions
     // --------------------------------------------------------
