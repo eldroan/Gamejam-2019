@@ -53,8 +53,8 @@ public class CreditsMenuManager : MonoBehaviour
         theTeam.Add("matias\nmerino");
 
         theRoles.Add("characters\ngame design\ndev");
-        theRoles.Add("game design\nsounds\ndev");
-        theRoles.Add("fireman\ndev");
+        theRoles.Add("sounds\ngame design\ndev");
+        theRoles.Add("fireman\ngame design\ndev");
         theRoles.Add("animations\ngame design\ndev");
         theRoles.Add("background menu art");
     }
