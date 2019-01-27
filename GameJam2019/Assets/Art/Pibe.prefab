@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 5538527502587163040}
   - component: {fileID: 4191654221084981572}
   - component: {fileID: 4472835734570499953}
+  - component: {fileID: 5797087266836386691}
   m_Layer: 0
   m_Name: Pibe
   m_TagString: Untagged
@@ -136,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDelay: 5
   blockDelay: 5
+  ifTest: 0
   speed: 30
   jumpForce: 17
   Animator: {fileID: 4472835734570499953}
@@ -207,6 +209,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5797087266836386691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8069502136515532221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d7da15586405b46a3f1af81c186edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jump: {fileID: 8300000, guid: 9b813a4b3e12f82178c462a2e46126ef, type: 3}
+  attack1: {fileID: 8300000, guid: f2a2a5c37d83571859f5ca0125518352, type: 3}
+  attack2: {fileID: 8300000, guid: 8884ed8c4c26540eeadd36295b8d4177, type: 3}
+  block: {fileID: 8300000, guid: e1ff6ef54f72da4d397a6742bb13c245, type: 3}
+  damageRecieved: {fileID: 8300000, guid: 80fdc331b3cab9852b8fb64e6158db64, type: 3}
 --- !u!1001 &667638237522504047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -887,9 +906,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 667638237522504047}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &5556608204362407370 stripped
+--- !u!4 &4108915665500796677 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4926626591392789669, guid: 2ebc9d55e35d64e4e9d2bfcbaf3bd106,
+  m_CorrespondingSourceObject: {fileID: 3478503460075822698, guid: 2ebc9d55e35d64e4e9d2bfcbaf3bd106,
     type: 3}
   m_PrefabInstance: {fileID: 667638237522504047}
   m_PrefabAsset: {fileID: 0}
@@ -983,15 +1002,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ae93fb156fc6d4c828c64571fc3edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &3228861974247737650 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2705772407266910301, guid: 2ebc9d55e35d64e4e9d2bfcbaf3bd106,
-    type: 3}
-  m_PrefabInstance: {fileID: 667638237522504047}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8547153580552798584 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9213937767534422039, guid: 2ebc9d55e35d64e4e9d2bfcbaf3bd106,
+    type: 3}
+  m_PrefabInstance: {fileID: 667638237522504047}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5556608204362407370 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4926626591392789669, guid: 2ebc9d55e35d64e4e9d2bfcbaf3bd106,
     type: 3}
   m_PrefabInstance: {fileID: 667638237522504047}
   m_PrefabAsset: {fileID: 0}
@@ -1013,9 +1032,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 667638237522504047}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4108915665500796677 stripped
+--- !u!4 &3228861974247737650 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3478503460075822698, guid: 2ebc9d55e35d64e4e9d2bfcbaf3bd106,
+  m_CorrespondingSourceObject: {fileID: 2705772407266910301, guid: 2ebc9d55e35d64e4e9d2bfcbaf3bd106,
     type: 3}
   m_PrefabInstance: {fileID: 667638237522504047}
   m_PrefabAsset: {fileID: 0}

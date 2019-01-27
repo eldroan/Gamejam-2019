@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 6889267744464187993}
   - component: {fileID: 9068428150084289253}
   - component: {fileID: 2283780740955352366}
+  - component: {fileID: 7973754815338870789}
   m_Layer: 0
   m_Name: Vieja
   m_TagString: Untagged
@@ -133,6 +134,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.5022383, y: 5.698654}
   m_EdgeRadius: 0
+--- !u!114 &7973754815338870789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394785373890644960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d7da15586405b46a3f1af81c186edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jump: {fileID: 8300000, guid: 9b813a4b3e12f82178c462a2e46126ef, type: 3}
+  attack1: {fileID: 8300000, guid: f6eb75436671870dba916598368b8a40, type: 3}
+  attack2: {fileID: 8300000, guid: f5ad58d8eaf265d9ea6e4f4a3b93ed5e, type: 3}
+  block: {fileID: 8300000, guid: 7d444bd47ec5c2681ab6a2a012bca2bd, type: 3}
+  damageRecieved: {fileID: 8300000, guid: 656dc83b86e43f63cac84ed83bd3bd72, type: 3}
 --- !u!114 &7751440547723141841
 MonoBehaviour:
   m_ObjectHideFlags: 0
