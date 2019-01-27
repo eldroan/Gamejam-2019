@@ -65,6 +65,19 @@ public class GenericFunctions : MonoBehaviour
 	// ////////////////////////////////////////////////////////
     // Audio Processing Functions
     // --------------------------------------------------------
+	// Fade in sound with fade time
+	public static IEnumerator FadeInSound(float fadeTime, AudioSource audioSource, float maxVolume, float waitTime)
+    {
+		audioSource.volume = 0f;
+		yield return new WaitForSeconds(waitTime);
+        while(audioSource.volume < maxVolume)
+        {
+            audioSource.volume += Time.deltaTime / fadeTime;
+			yield return null;
+        }
+        audioSource.volume = maxVolume;
+    }
+
 	// Fade out sound with fade time
  	public static IEnumerator FadeOutSound(float fadeTime, AudioSource audioSource, float minVolume)
     {

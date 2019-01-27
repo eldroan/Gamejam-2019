@@ -50,6 +50,7 @@ public class CreditsMenuManager : MonoBehaviour
         StartCoroutine(PlayMainMenuAnimation(animations[1], delay + 2.25f));
 
         Invoke("EnableMenuButtons", 3.75f);
+        StartCoroutine(GenericFunctions.FadeInSound(.5f, audioSource, 1f, .5f));
     }
 
     // Update is called once per frame
@@ -61,7 +62,7 @@ public class CreditsMenuManager : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Escape)) // Only for test mode
 		{
             audioSource.PlayOneShot(clipSelect);
-            StartCoroutine(GenericFunctions.FadeOutSound(1.5f, audioSource, 0f));
+            StartCoroutine(GenericFunctions.FadeOutSound(.75f, audioSource, 0f));
 			StartCoroutine(GenericFunctions.FadeInImage(.75f, fadeImage, "MainMenu"));
             buttonsEnabled = false;
 		}

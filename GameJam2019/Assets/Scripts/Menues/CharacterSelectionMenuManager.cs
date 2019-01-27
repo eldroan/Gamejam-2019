@@ -66,6 +66,7 @@ public class CharacterSelectionMenuManager : MonoBehaviour
         this.characterOptionsP2[player2SelectionIndex].SetActive(true);
 
         timer = maxTimeToSelect;
+        StartCoroutine(GenericFunctions.FadeInSound(.5f, audioSource, 1f, .5f));
     }
 
     // Update is called once per frame
@@ -73,7 +74,7 @@ public class CharacterSelectionMenuManager : MonoBehaviour
     { 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            StartCoroutine(GenericFunctions.FadeOutSound(1.5f, audioSource, 0f));
+            StartCoroutine(GenericFunctions.FadeOutSound(.75f, audioSource, 0f));
             StartCoroutine(GenericFunctions.FadeInImage(.75f, fadeImage, "MainMenu"));
         }
 

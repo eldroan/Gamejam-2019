@@ -54,7 +54,8 @@ public class MainMenuManager : MonoBehaviour
         StartCoroutine(PlayMainMenuAnimation(animations[3], delay + 3.50f));
         StartCoroutine(PlayMainMenuAnimation(animations[4], delay + 3.75f));
 
-		audioSource.PlayDelayed(.925f);
+		audioSource.PlayDelayed(.3f);	
+		StartCoroutine(GenericFunctions.FadeInSound(.4f, audioSource, 1f, .5f));
     }
 
     // Update is called once per frame
@@ -178,7 +179,7 @@ public class MainMenuManager : MonoBehaviour
 	{
 		buttonsEnabled = false;
 		audioSource.PlayOneShot(clipSelect);
-		StartCoroutine(GenericFunctions.FadeOutSound(1.5f, audioSource, 0f));
+		StartCoroutine(GenericFunctions.FadeOutSound(.75f, audioSource, 0f));
 		switch (buttonIndex)
 		{
 			case 0:
