@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,8 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float attackDelay = 5f;
     [SerializeField] private float blockDelay = 5f;
+    [SerializeField] private bool ifTest;
 
-    [SerializeField] private float speed = 30f;    
+    [SerializeField] private float speed = 30f;
     [SerializeField] private float jumpForce = 17f;
     [SerializeField] private Animator Animator;
     [Tooltip("(Opcional) - Objeto contundente para arrojar.")]
@@ -22,33 +23,59 @@ public class PlayerController : MonoBehaviour
     private float remainingBlockDelay;
 
     private bool bloking;
+    private bool attacking;
+    private Collider2D myHitObject;
 
-    public string PlayerID { get; set; }
+    private string playerID { get; set; }
+    public string PlayerID { get { return playerID; } set { this.playerID = value; SetTag(); } }
 
     private void Awake()
     {
+        if (ifTest) PlayerID = Constants.PLAYER_1_TAG;
+
         myRigidbody2D = this.GetComponent<Rigidbody2D>();
         myRigidbody2D = this.GetComponent<Rigidbody2D>();
+
+        myHitObject = GetComponentsInChildren<BoxCollider2D>().Select(x => x).Where(x => x.name == "HitObjectCollider").FirstOrDefault();
     }
 
-    private void FixedUpdate()
+    private void SetTag()
+    {
+        if (myHitObject != null)
+        {
+            myHitObject.tag = playerID;
+            myHitObject.enabled = false;
+        }
+    }
+
+    private void Update()
     {
         if (remainingAttackDelay > 0)
-            remainingBlockDelay -= Time.deltaTime;
+            remainingAttackDelay -= Time.deltaTime;
         if (remainingBlockDelay > 0)
-                remainingBlockDelay -= Time.deltaTime;
+            remainingBlockDelay -= Time.deltaTime;
+    }
+    private void FixedUpdate()
+    {
 
-        if (isGrounded && (Input.GetKeyDown(PlayerInputs.GetKey(PlayerID, Constants.JUMP))))
+        if (Input.GetKeyUp(PlayerInputs.GetKey(playerID, Constants.LEFTH)) || Input.GetKeyUp(PlayerInputs.GetKey(playerID, Constants.RIGHT)))
+        {
+            this.Animator.SetBool("Walk", false);
+
+        }
+
+        if (isGrounded && (Input.GetKeyDown(PlayerInputs.GetKey(playerID, Constants.JUMP))) && !bloking && !attacking)
         {
             this.Animator.SetTrigger(Constants.JUMP);
             myRigidbody2D.velocity = new Vector3(0f, jumpForce, 0f);
         }
-        if (Input.GetKey(PlayerInputs.GetKey(PlayerID, Constants.LEFTH)))
+
+        if (Input.GetKey(PlayerInputs.GetKey(playerID, Constants.LEFTH)) && !bloking && !attacking)
         {
             if (isGrounded)
             {
-                this.Animator.SetTrigger("Walk");
                 myRigidbody2D.velocity = new Vector3(-speed, myRigidbody2D.velocity.y, 0f);
+                this.Animator.SetBool("Walk", true);
             }
             else
             {
@@ -57,11 +84,11 @@ public class PlayerController : MonoBehaviour
             
             this.transform.rotation = new Quaternion(0f, 180f, 0f, 1f);
         }
-        else if (Input.GetKey(PlayerInputs.GetKey(PlayerID, Constants.RIGHT)))
+        else if (Input.GetKey(PlayerInputs.GetKey(playerID, Constants.RIGHT)) && !bloking && !attacking)
         {
             if (isGrounded)
             {
-                this.Animator.SetTrigger("Walk");
+                this.Animator.SetBool("Walk", true);
                 myRigidbody2D.velocity = new Vector3(speed, myRigidbody2D.velocity.y, 0f);
             }
             else
@@ -74,31 +101,25 @@ public class PlayerController : MonoBehaviour
         else
         {
             myRigidbody2D.velocity = new Vector3(0f, myRigidbody2D.velocity.y, 0f);
+            this.Animator.SetBool("Walk", false);
+
         }
 
-        if (Input.GetKeyUp(PlayerInputs.GetKey(PlayerID, Constants.RIGHT)))
-        {
-            this.Animator.SetTrigger("StopWalk");
-        }
-        if (Input.GetKeyUp(PlayerInputs.GetKey(PlayerID, Constants.LEFTH)))
-        {
-            this.Animator.SetTrigger("StopWalk");
-        }
 
-        if (Input.GetKeyDown(PlayerInputs.GetKey(PlayerID, Constants.ATTACK)) && remainingAttackDelay <= 0)
+
+        if (Input.GetKeyDown(PlayerInputs.GetKey(playerID, Constants.ATTACK)) && remainingAttackDelay <= 0)
         {
             this.Animator.SetTrigger("Attack");
             this.remainingAttackDelay = this.attackDelay;
 
-            if (bluntObject != null)
-            {
-                var go = Instantiate(bluntObject, bluntObjectSpawnPosition.position + new Vector3(0f,0f,0.01f), this.transform.rotation);
-                go.tag = this.gameObject.tag;
-                go.GetComponent<BluntObject>()?.Shoot();
-            }
+            this.attacking = true;
+
+            if (myHitObject != null)
+                myHitObject.enabled = true;
+
         }
 
-        if (Input.GetKeyDown(PlayerInputs.GetKey(PlayerID, Constants.BLOCK)) && remainingBlockDelay <= 0)
+        if (Input.GetKeyDown(PlayerInputs.GetKey(playerID, Constants.BLOCK)) && remainingBlockDelay <= 0)
         {
             this.Animator.SetTrigger("Block");
             this.bloking = true;
@@ -132,8 +153,37 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                FightManager.Instance.OnPlayerHit(PlayerID == Constants.PLAYER_1_TAG ? Constants.PLAYER_1_TAG : Constants.PLAYER_2_TAG);
+                if (!attacking)
+                {
+                    FightManager.Instance.OnPlayerHit(playerID == Constants.PLAYER_1_TAG ? Constants.PLAYER_1_TAG : Constants.PLAYER_2_TAG);
+                }
             }
         }
+    }
+
+    public void InAttackMoment()
+    {
+        if (bluntObject != null)
+        {
+            var go = Instantiate(bluntObject, bluntObjectSpawnPosition.position + new Vector3(0f, 0f, 0.01f), this.transform.rotation);
+            go.tag = this.gameObject.tag;
+            go.GetComponent<BluntObject>()?.Shoot();
+        }
+    }
+
+    public void InBlockBlock()
+    {
+    }
+
+    public void EndBlock()
+    {
+        this.bloking = false;
+    }
+
+    public void EndAttack()
+    {
+        this.attacking = false;
+        if (myHitObject != null)
+            myHitObject.enabled = false;
     }
 }

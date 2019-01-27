@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 1245026799}
-  fightDuration: 5
+  fightDuration: 120
   remainingTimeText: {fileID: 511229054}
   deathmatchText: {fileID: 2026806806}
   victoryText: {fileID: 569185495}

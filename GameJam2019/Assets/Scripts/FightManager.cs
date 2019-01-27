@@ -116,12 +116,14 @@ public class FightManager : MonoBehaviour
 
     public void OnPlayerHit(string playerID)
     {
+        //if (this.playerBHits >= 3) return;
+
         if (playerID == Constants.PLAYER_1_TAG)
         {
             this.player2HitMarker[this.playerBHits].enabled = true;
             this.playerBHits++;
 
-            if (playerAHits == 3)
+            if (playerBHits >= 3)
                 Finish(playerID);
 
         }
@@ -129,7 +131,7 @@ public class FightManager : MonoBehaviour
         {
             this.player1HitMarker[this.playerAHits].enabled = true;
             this.playerAHits++;
-            if (playerAHits == 3)
+            if (playerAHits >= 3)
                 Finish(playerID);
         }
     }
