@@ -2,22 +2,29 @@
 using UnityEngine.UI;
 using TMPro;
 using System;
+using TMPro.Examples;
 
 public class FightManager : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer background;
     [SerializeField] private float fightDuration = 120;
     [SerializeField] private TextMeshProUGUI remainingTimeText;
     [SerializeField] private GameObject deathmatchText;
     [SerializeField] private TextMeshProUGUI victoryText;
     [SerializeField] private float deathmatchMessegeTime = 2;
-    [SerializeField] private TextMeshProUGUI playerANameText;
-    [SerializeField] private TextMeshProUGUI playerBNameText;
+    [SerializeField] private TextMeshProUGUI player1NameText;
+    [SerializeField] private TextMeshProUGUI player2NameText;
     [SerializeField] private bool isTesting;
-    [SerializeField] private Transform playerASpawnPoint;
-    [SerializeField] private Transform playerBSpawnPoint;
+    [SerializeField] private Transform player1SpawnPoint;
+    [SerializeField] private Transform player2SpawnPoint;
+    [SerializeField] private Image player1Avatar;
+    [SerializeField] private Image player2Avatar;
+    [SerializeField] public Image fadeImage;
+
+    [SerializeField] private Image[] player1HitMarker;
+    [SerializeField] private Image[] player2HitMarker;
 
     public static FightManager Instance { get; private set; }
-
 
     private float RemaingTime;
     private bool OnDeathmatch;
@@ -28,17 +35,26 @@ public class FightManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = new FightManager();
-
+        Instance = this;
 
         if (Session.Instance != null)
         {
+            //if (BackgroundBundle.Instance != null)
+            //    background.sprite = BackgroundBundle.Instance.GetRandomBackground().Sprite;
+
+                background.sprite = BackgroundBundle.Instance.GetBackground(1).Sprite;
+
             var playerA = CharacterBundle.Instance.GetCharacter(Session.Instance.PlayerA);
             var playerB = CharacterBundle.Instance.GetCharacter(Session.Instance.PlayerB);
 
-            var playerAObject = Instantiate(playerA.Prefab, playerASpawnPoint.position, playerASpawnPoint.rotation);
-            var playerBObject = Instantiate(playerB.Prefab, playerBSpawnPoint.position, playerBSpawnPoint.rotation);
+            player1Avatar.sprite = playerA.Avatar;
+            player2Avatar.sprite = playerB.Avatar;
+
+            var playerAObject = Instantiate(playerA.Prefab, player1SpawnPoint.position, player1SpawnPoint.rotation);
+            var playerBObject = Instantiate(playerB.Prefab, player2SpawnPoint.position, player2SpawnPoint.rotation);
+
+            playerAObject.GetComponent<PlayerController>().PlayerID = Constants.PLAYER_1_TAG;
+            playerBObject.GetComponent<PlayerController>().PlayerID = Constants.PLAYER_2_TAG;
 
             playerAObject.tag = Constants.PLAYER_1_TAG;
             playerBObject.tag = Constants.PLAYER_2_TAG;
@@ -49,8 +65,8 @@ public class FightManager : MonoBehaviour
             this.deathmatchText.SetActive(false);
             this.DeathmatchTime = 0;
 
-            this.playerANameText.text = playerA.Name;
-            this.playerBNameText.text = playerB.Name;
+            this.player1NameText.text = playerA.Name;
+            this.player2NameText.text = playerB.Name;
 
         }
     }
@@ -67,33 +83,34 @@ public class FightManager : MonoBehaviour
                 this.StartDeathmatch();
             }
         }
-        else
-        {
-            this.DeathmatchTime += Time.deltaTime;
-            if(this.DeathmatchTime >= this.deathmatchMessegeTime && this.deathmatchText.activeInHierarchy)
-            {
-                this.deathmatchText.SetActive(false);
-            }
-        }
     }
 
     private void StartDeathmatch()
     {
         this.OnDeathmatch = true;
         this.deathmatchText.SetActive(true);
+        this.deathmatchText.GetComponent<VertexJitter>().ShakeText();
+        this.GetComponent<Animator>().SetTrigger("Deathmatch");
         this.playerAHits = 2;
         this.playerBHits = 2;
+
+        for (var i = 0; i<= 1; i++)
+        {
+            this.player1HitMarker[i].enabled = true;
+            this.player2HitMarker[i].enabled = true;
+        }
     }
 
     private void UpdateRemaingTimeText(float remaingTime)
     {
         if(remaingTime <= 0)
         {
-            this.remainingTimeText.text = "00:00.00";
+            this.remainingTimeText.text = "00:00";
         }
         else
         {
-            this.remainingTimeText.text = "0" + ((int)(remaingTime / 60)).ToString() + ":" + (((this.RemaingTime % 60) < 10) ? "0" : "") + (this.RemaingTime%60).ToString();
+            this.remainingTimeText.text = TimeSpan.FromSeconds(remaingTime).ToString(@"mm\:ss");
+            //this.remainingTimeText.text = "0" + ((int)(remaingTime / 60)).ToString() + ":" + (((this.RemaingTime % 60) < 10) ? "0" : "") + (this.RemaingTime%60).ToString();
         }
     }
 
@@ -101,7 +118,8 @@ public class FightManager : MonoBehaviour
     {
         if (playerID == Constants.PLAYER_1_TAG)
         {
-            this.playerAHits++;
+            this.player2HitMarker[this.playerBHits].enabled = true;
+            this.playerBHits++;
 
             if (playerAHits == 3)
                 Finish(playerID);
@@ -109,8 +127,8 @@ public class FightManager : MonoBehaviour
         }
         else if (playerID == Constants.PLAYER_2_TAG)
         {
-            this.playerBHits++;
-
+            this.player1HitMarker[this.playerAHits].enabled = true;
+            this.playerAHits++;
             if (playerAHits == 3)
                 Finish(playerID);
         }
@@ -118,7 +136,9 @@ public class FightManager : MonoBehaviour
 
     private void Finish(string playerID)
     {
-        Time.timeScale = 0;
-        //TODO fin del juego
+        var victory = playerID == Constants.PLAYER_1_TAG ? "2" : "1";
+        this.victoryText.gameObject.SetActive(true);
+        this.victoryText.text = $"victoria player {victory}";
+        StartCoroutine(GenericFunctions.FadeInImage(2.5f, fadeImage, "MainMenu"));
     }
 }

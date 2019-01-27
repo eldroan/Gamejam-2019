@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
             if (bluntObject != null)
             {
-                var go = Instantiate(bluntObject, bluntObjectSpawnPosition.position, this.transform.rotation);
+                var go = Instantiate(bluntObject, bluntObjectSpawnPosition.position + new Vector3(0f,0f,0.01f), this.transform.rotation);
                 go.tag = this.gameObject.tag;
                 go.GetComponent<BluntObject>()?.Shoot();
             }

@@ -12,6 +12,7 @@ public class Character
     public string Name;
     public int Hits;
     public GameObject Prefab;
+    public Sprite Avatar;
 }
 
 public class CharacterBundle : MonoBehaviour

@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 using TMPro;
 using TMPro.Examples;
+using System;
 
 public class GenericFunctions : MonoBehaviour
 {
@@ -141,4 +142,9 @@ public class GenericFunctions : MonoBehaviour
 			yield return new WaitForSeconds(timeTextOut);
 		}
 	}
+
+    internal static IEnumerator FadeInImage(float v1, object fadeImage, string v2)
+    {
+        throw new NotImplementedException();
+    }
 }
