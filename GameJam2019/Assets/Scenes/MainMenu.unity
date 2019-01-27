@@ -1204,10 +1204,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b587b7374708e2f8e76af6304a59c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1059394483}
-  clipSwitch: {fileID: 0}
-  clipSelect: {fileID: 0}
   delay: 0.5
+  audioSource: {fileID: 1059394483}
+  clipSwitch: {fileID: 8300000, guid: 9b813a4b3e12f82178c462a2e46126ef, type: 3}
+  clipSelect: {fileID: 8300000, guid: ec84bac7b6df169ab86a5a5120fd8629, type: 3}
 --- !u!1 &1035514681
 GameObject:
   m_ObjectHideFlags: 0
