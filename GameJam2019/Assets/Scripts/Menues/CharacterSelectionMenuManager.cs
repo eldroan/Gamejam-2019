@@ -13,6 +13,10 @@ public class CharacterSelectionMenuManager : MonoBehaviour
     [SerializeField] private AudioSource audioSource = null;
     [SerializeField] private AudioClip clipSwitch = null;
     [SerializeField] private AudioClip clipSelect = null;
+
+    [SerializeField] private GameObject[] characterOptionsP1;
+    [SerializeField] private GameObject[] characterOptionsP2;
+
     private float timer;
 
     // UI objects
@@ -29,11 +33,11 @@ public class CharacterSelectionMenuManager : MonoBehaviour
     private bool fading = false;
 
     // Other objects
-    private int player1Selection;
-    private int player2Selection;
+    private int player1SelectionIndex;
+    private int player2SelectionIndex;
     
     
-    void Awake()
+    private void Awake()
     {
         fadeImage = GameObject.Find("FadeImage").GetComponent<Image>();
         titleText = GameObject.Find("Title").GetComponent<TextMeshProUGUI>();
@@ -43,11 +47,11 @@ public class CharacterSelectionMenuManager : MonoBehaviour
         timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
     }
 
-    void Start()
+    private void Start()
     {
         titleText.GetComponent<VertexJitter>().ShakeText();
-        player1Selection = 0;
-        player2Selection = characters.Count - 1;  
+        player1SelectionIndex = 0;
+        player2SelectionIndex = characters.Count - 1;  
 
         for (int i=0; i < selectorsPlayer1.Count; i++)
         {
@@ -55,14 +59,17 @@ public class CharacterSelectionMenuManager : MonoBehaviour
             selectorsPlayer2[i].gameObject.SetActive(false);
         }
 
-        selectorsPlayer1[player1Selection].gameObject.SetActive(true);
-        selectorsPlayer2[player2Selection].gameObject.SetActive(true);
+        selectorsPlayer1[player1SelectionIndex].gameObject.SetActive(true);
+        selectorsPlayer2[player2SelectionIndex].gameObject.SetActive(true);
+
+        this.characterOptionsP1[player1SelectionIndex].SetActive(true);
+        this.characterOptionsP2[player2SelectionIndex].SetActive(true);
 
         timer = maxTimeToSelect;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     { 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -126,10 +133,10 @@ public class CharacterSelectionMenuManager : MonoBehaviour
     // Player 1 control functions
     private void NextCharacterPlayer1()
     {
-        player1Selection += 1;
-		if (player1Selection > characters.Count-1)
+        player1SelectionIndex += 1;
+		if (player1SelectionIndex > characters.Count-1)
 		{
-			player1Selection = characters.Count - 1;
+			player1SelectionIndex = characters.Count - 1;
 		}
 		else
 		{
@@ -140,10 +147,10 @@ public class CharacterSelectionMenuManager : MonoBehaviour
 
     private void PreviousCharacterPlayer1()
     {
-        player1Selection -= 1;
-		if (player1Selection < 0)
+        player1SelectionIndex -= 1;
+		if (player1SelectionIndex < 0)
 		{
-			player1Selection = 0;
+			player1SelectionIndex = 0;
 		}
 		else
 		{
@@ -156,33 +163,38 @@ public class CharacterSelectionMenuManager : MonoBehaviour
     {
         for (int i=0; i < selectorsPlayer1.Count; i++)
         {
-            if (i == player1Selection)
+            if (i == player1SelectionIndex)
             {
                 selectorsPlayer1[i].gameObject.SetActive(true);
+                this.characterOptionsP1[i].SetActive(true);
             }
             else
             {
                 selectorsPlayer1[i].gameObject.SetActive(false);
+                this.characterOptionsP1[i].SetActive(false);
             }
         }
+
     }
 
     private void SelectCharacterPlayer1()
     {
         audioSource.PlayOneShot(clipSelect);
-        selectorsPlayer1[player1Selection].GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 230);
-        selectorsPlayer1[player1Selection].GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 230);
+        selectorsPlayer1[player1SelectionIndex].GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 230);
+        selectorsPlayer1[player1SelectionIndex].GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 230);
         player1selected = true;
+        Session.Instance.PlayerA = (CharacterType)player1SelectionIndex;
+
     }
 
     // -----------------------------------------------
     // Player 2 control functions
     private void NextCharacterPlayer2()
     {
-        player2Selection += 1;
-		if (player2Selection > characters.Count-1)
+        player2SelectionIndex += 1;
+		if (player2SelectionIndex > characters.Count-1)
 		{
-			player2Selection = characters.Count - 1;
+			player2SelectionIndex = characters.Count - 1;
 		}
 		else
 		{
@@ -193,10 +205,10 @@ public class CharacterSelectionMenuManager : MonoBehaviour
 
     private void PreviousCharacterPlayer2()
     {
-        player2Selection -= 1;
-		if (player2Selection < 0)
+        player2SelectionIndex -= 1;
+		if (player2SelectionIndex < 0)
 		{
-			player2Selection = 0;
+			player2SelectionIndex = 0;
 		}
 		else
 		{
@@ -209,13 +221,15 @@ public class CharacterSelectionMenuManager : MonoBehaviour
     {
         for (int i=0; i < selectorsPlayer2.Count; i++)
         {
-            if (i == player2Selection)
+            if (i == player2SelectionIndex)
             {
                 selectorsPlayer2[i].gameObject.SetActive(true);
+                this.characterOptionsP2[i].SetActive(true);
             }
             else
             {
                 selectorsPlayer2[i].gameObject.SetActive(false);
+                this.characterOptionsP2[i].SetActive(false);
             }
         }
     }
@@ -223,8 +237,9 @@ public class CharacterSelectionMenuManager : MonoBehaviour
     private void SelectCharacterPlayer2()
     {
         audioSource.PlayOneShot(clipSelect);
-        selectorsPlayer2[player2Selection].GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 230);
-        selectorsPlayer2[player2Selection].GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 230);
+        selectorsPlayer2[player2SelectionIndex].GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 230);
+        selectorsPlayer2[player2SelectionIndex].GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 230);
         player2selected = true;
+        Session.Instance.PlayerB = (CharacterType)player2SelectionIndex;
     }
 }
