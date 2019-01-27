@@ -60,6 +60,7 @@ public class CreditsMenuManager : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Escape)) // Only for test mode
 		{
+            audioSource.PlayOneShot(clipSelect);
 			StartCoroutine(GenericFunctions.FadeInImage(.75f, fadeImage, "MainMenu"));
 		}
     }

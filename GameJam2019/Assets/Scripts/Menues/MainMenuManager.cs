@@ -123,7 +123,7 @@ public class MainMenuManager : MonoBehaviour
 			buttonsPanel[buttonIndex].GetComponentInChildren<TextMeshProUGUI>().fontSize = buttonsPanel[buttonIndex].GetComponentInChildren<TextMeshProUGUI>().fontSize * fontSizeFactor;
 			buttonsPanel[buttonIndex].GetComponentInChildren<VertexJitter>().ShakeText();
 		}
-		//audioSource.PlayOneShot(clipSwitch);
+		audioSource.PlayOneShot(clipSwitch);
         ChangeButtonText();
 	}
 
@@ -141,7 +141,7 @@ public class MainMenuManager : MonoBehaviour
 			buttonsPanel[buttonIndex].GetComponentInChildren<TextMeshProUGUI>().fontSize = buttonsPanel[buttonIndex].GetComponentInChildren<TextMeshProUGUI>().fontSize * fontSizeFactor;
 			buttonsPanel[buttonIndex].GetComponentInChildren<VertexJitter>().ShakeText();
 		}
-		//audioSource.PlayOneShot(clipSwitch);
+		audioSource.PlayOneShot(clipSwitch);
         ChangeButtonText();
 	}
 
