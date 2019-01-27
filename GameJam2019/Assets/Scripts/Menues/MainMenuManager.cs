@@ -111,11 +111,11 @@ public class MainMenuManager : MonoBehaviour
 
     private void EnableMenuButtons()
 	{
+		ChangeButtonText();
 		buttonsPanel[0].GetComponentInChildren<TextMeshProUGUI>().fontSize = buttonsPanel[0].GetComponentInChildren<TextMeshProUGUI>().fontSize * fontSizeFactor;
 		buttonsPanel[0].GetComponentInChildren<VertexJitter>().ShakeText();
         titleText[1].GetComponentInChildren<VertexJitter>().ShakeText();
         titleText[1].fontSize = titleText[1].fontSize * fontSizeFactor;
-
 		buttonsEnabled = true;
 	}
 

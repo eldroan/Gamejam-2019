@@ -654,7 +654,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: fight for tv
+  m_text: FIGHT FOR TV
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d663a923bd34d84eafc5676ea4b59a2, type: 2}
   m_sharedMaterial: {fileID: 21268166741605880, guid: 7d663a923bd34d84eafc5676ea4b59a2,
@@ -839,6 +839,96 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[0].jump
+      value: 
+      objectReference: {fileID: 8300000, guid: 9b813a4b3e12f82178c462a2e46126ef, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[1].jump
+      value: 
+      objectReference: {fileID: 8300000, guid: 9b813a4b3e12f82178c462a2e46126ef, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[2].jump
+      value: 
+      objectReference: {fileID: 8300000, guid: 9b813a4b3e12f82178c462a2e46126ef, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[2].block
+      value: 
+      objectReference: {fileID: 8300000, guid: 226ac2da6c1170fc583fc84eba48e593, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[2].damageRecieved
+      value: 
+      objectReference: {fileID: 8300000, guid: 3449f0239c5d24d598b529e2c75ffdd5, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[2].attack1
+      value: 
+      objectReference: {fileID: 8300000, guid: 4182b81f2ce95f60287546589d0e2d84, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[2].attack2
+      value: 
+      objectReference: {fileID: 8300000, guid: f5aa1b0e50b381a4389a36dee5848623, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[1].attack1
+      value: 
+      objectReference: {fileID: 8300000, guid: f2a2a5c37d83571859f5ca0125518352, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[1].attack2
+      value: 
+      objectReference: {fileID: 8300000, guid: 8884ed8c4c26540eeadd36295b8d4177, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[1].block
+      value: 
+      objectReference: {fileID: 8300000, guid: e1ff6ef54f72da4d397a6742bb13c245, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[1].damageRecieved
+      value: 
+      objectReference: {fileID: 8300000, guid: 80fdc331b3cab9852b8fb64e6158db64, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[0].attack1
+      value: 
+      objectReference: {fileID: 8300000, guid: f6eb75436671870dba916598368b8a40, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[0].attack2
+      value: 
+      objectReference: {fileID: 8300000, guid: f5ad58d8eaf265d9ea6e4f4a3b93ed5e, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[0].block
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d444bd47ec5c2681ab6a2a012bca2bd, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[0].damageRecieved
+      value: 
+      objectReference: {fileID: 8300000, guid: 656dc83b86e43f63cac84ed83bd3bd72, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[0].damageReceived
+      value: 
+      objectReference: {fileID: 8300000, guid: 656dc83b86e43f63cac84ed83bd3bd72, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[2].damageReceived
+      value: 
+      objectReference: {fileID: 8300000, guid: 3449f0239c5d24d598b529e2c75ffdd5, type: 3}
+    - target: {fileID: 3589532013816366375, guid: d309b7cc7be352d4f9ff715527acb2f1,
+        type: 3}
+      propertyPath: characters.Array.data[1].damageReceived
+      value: 
+      objectReference: {fileID: 8300000, guid: 80fdc331b3cab9852b8fb64e6158db64, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d309b7cc7be352d4f9ff715527acb2f1, type: 3}
 --- !u!1 &784430361

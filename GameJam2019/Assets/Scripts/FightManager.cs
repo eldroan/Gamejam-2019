@@ -24,6 +24,9 @@ public class FightManager : MonoBehaviour
     [SerializeField] private Image[] player1HitMarker;
     [SerializeField] private Image[] player2HitMarker;
 
+
+    [SerializeField] private AudioSource audioSource;
+
     public static FightManager Instance { get; private set; }
 
     private float RemaingTime;
@@ -32,6 +35,11 @@ public class FightManager : MonoBehaviour
 
     private int playerAHits = 0;
     private int playerBHits = 0;
+
+	// Audio objects
+	private AudioClip clipDamageReceivedPlayerA;
+	private AudioClip clipDamageReceivedPlayerB;
+
 
     private void Awake()
     {
@@ -59,7 +67,11 @@ public class FightManager : MonoBehaviour
             playerAObject.tag = Constants.PLAYER_1_TAG;
             playerBObject.tag = Constants.PLAYER_2_TAG;
 
-            this.RemaingTime = fightDuration;
+			clipDamageReceivedPlayerA = playerA.damageReceived;
+			clipDamageReceivedPlayerB = playerB.damageReceived;
+
+
+			this.RemaingTime = fightDuration;
             this.UpdateRemaingTimeText(this.RemaingTime);
             this.OnDeathmatch = false;
             this.deathmatchText.SetActive(false);
@@ -67,7 +79,6 @@ public class FightManager : MonoBehaviour
 
             this.player1NameText.text = playerA.Name;
             this.player2NameText.text = playerB.Name;
-
         }
     }
 
@@ -122,8 +133,8 @@ public class FightManager : MonoBehaviour
         {
             this.player2HitMarker[this.playerBHits].enabled = true;
             this.playerBHits++;
-
-            if (playerBHits >= 3)
+			audioSource.PlayOneShot(clipDamageReceivedPlayerA);
+			if (playerBHits >= 3)
                 Finish(playerID);
 
         }
@@ -131,7 +142,8 @@ public class FightManager : MonoBehaviour
         {
             this.player1HitMarker[this.playerAHits].enabled = true;
             this.playerAHits++;
-            if (playerAHits >= 3)
+			audioSource.PlayOneShot(clipDamageReceivedPlayerB);
+			if (playerAHits >= 3)
                 Finish(playerID);
         }
     }

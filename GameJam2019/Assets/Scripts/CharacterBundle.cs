@@ -13,6 +13,11 @@ public class Character
     public int Hits;
     public GameObject Prefab;
     public Sprite Avatar;
+	public AudioClip jump;
+	public AudioClip attack1;
+	public AudioClip attack2;
+	public AudioClip block;
+	public AudioClip damageReceived;
 }
 
 public class CharacterBundle : MonoBehaviour

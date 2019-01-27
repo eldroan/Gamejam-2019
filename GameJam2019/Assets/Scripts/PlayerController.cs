@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour
     [Tooltip("(Opcional) - Si hay objeto contundente hay que setear de donde sale.")]
     [SerializeField] private Transform bluntObjectSpawnPosition;
 
-    private Rigidbody2D myRigidbody2D;
+
+	private Rigidbody2D myRigidbody2D;
     private bool isGrounded;
 
     private float remainingAttackDelay;
@@ -30,15 +31,43 @@ public class PlayerController : MonoBehaviour
     public string playerIDTest;
     public string PlayerID { get { return playerID; } set { this.playerID = value; SetTag(); } }
 
-    private void Awake()
+	// Audio objects
+	private AudioSource audioSource;
+	private AudioClip clipJumpPlayerA;
+	private AudioClip clipAttackPlayerA1;
+	private AudioClip clipAttackPlayerA2;
+	private AudioClip clipBlockPlayerA;
+
+	private AudioClip clipJumpPlayerB;
+	private AudioClip clipAttackPlayerB1;
+	private AudioClip clipAttackPlayerB2;
+	private AudioClip clipBlockPlayerB;
+
+	private void Awake()
     {
-        if (ifTest) PlayerID = playerIDTest;
+		audioSource = GameObject.Find("Audio Source").GetComponent<AudioSource>();
+
+		if (ifTest) PlayerID = playerIDTest;
 
         myRigidbody2D = this.GetComponent<Rigidbody2D>();
         myRigidbody2D = this.GetComponent<Rigidbody2D>();
 
         myHitObject = GetComponentsInChildren<BoxCollider2D>().Select(x => x).Where(x => x.name == "HitObjectCollider").FirstOrDefault();
-    }
+
+		// The audio thing
+		var playerA = CharacterBundle.Instance.GetCharacter(Session.Instance.PlayerA);
+		var playerB = CharacterBundle.Instance.GetCharacter(Session.Instance.PlayerB);
+
+		clipJumpPlayerA = playerA.jump;
+		clipJumpPlayerA = playerA.attack1;
+		clipJumpPlayerA = playerA.attack2;
+		clipJumpPlayerA = playerA.block;
+
+		clipJumpPlayerB = playerB.jump;
+		clipJumpPlayerB = playerB.attack1;
+		clipJumpPlayerB = playerB.attack2;
+		clipJumpPlayerB = playerB.block;
+	}
 
     private void SetTag()
     {
@@ -67,7 +96,16 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded && PlayerInputs.GetKeyDown(playerID, Constants.JUMP) && !bloking && !attacking)
         {
-            this.Animator.SetTrigger(Constants.JUMP);
+			if (playerID == Constants.PLAYER_1_TAG)
+			{
+				audioSource.PlayOneShot(clipJumpPlayerA);
+			}
+			else
+			{
+				audioSource.PlayOneShot(clipJumpPlayerB);
+			}
+
+			this.Animator.SetTrigger(Constants.JUMP);
             myRigidbody2D.velocity = new Vector3(0f, jumpForce, 0f);
         }
 
@@ -108,7 +146,30 @@ public class PlayerController : MonoBehaviour
 
         if (PlayerInputs.GetKeyDown(playerID, Constants.ATTACK) && remainingAttackDelay <= 0)
         {
-            this.Animator.SetTrigger("Attack");
+			int randomNumber = Random.Range(0, 2);
+			if (playerID == Constants.PLAYER_1_TAG)
+			{
+				if (randomNumber >= 1f)
+				{
+					audioSource.PlayOneShot(clipAttackPlayerA1);
+				}
+				else
+				{
+					audioSource.PlayOneShot(clipAttackPlayerA2);
+				}
+			}
+			else
+			{
+				if (randomNumber >= 1f)
+				{
+					audioSource.PlayOneShot(clipAttackPlayerB1);
+				}
+				else
+				{
+					audioSource.PlayOneShot(clipAttackPlayerB2);
+				}
+			}
+			this.Animator.SetTrigger("Attack");
             this.remainingAttackDelay = this.attackDelay;
 
             this.attacking = true;
@@ -117,7 +178,16 @@ public class PlayerController : MonoBehaviour
 
         if (PlayerInputs.GetKeyDown(playerID, Constants.BLOCK) && remainingBlockDelay <= 0)
         {
-            this.Animator.SetTrigger("Block");
+			if (playerID == Constants.PLAYER_1_TAG)
+			{
+				audioSource.PlayOneShot(clipBlockPlayerA);
+			}
+			else
+			{
+				audioSource.PlayOneShot(clipBlockPlayerB);
+			}
+
+			this.Animator.SetTrigger("Block");
             this.bloking = true;
             this.remainingBlockDelay = this.blockDelay;
         }
