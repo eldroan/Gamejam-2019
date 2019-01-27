@@ -65,12 +65,12 @@ public class MainMenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (PlayerInputs.GetKeyDown(Constants.PLAYER_1_TAG, Constants.ESCAPE)) // Only for test mode
-		{
-			Application.Quit();
-		}
+        if (PlayerInputs.GetKeyDown(Constants.PLAYER_1_TAG, Constants.ESCAPE)) // Only for test mode
+        {
+            Application.Quit();
+        }
 
-		if (!buttonsEnabled)
+        if (!buttonsEnabled)
 			return;
 
 		if (PlayerInputs.GetKeyDown(Constants.PLAYER_1_TAG, Constants.DOWN))

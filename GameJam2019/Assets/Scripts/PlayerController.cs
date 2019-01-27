@@ -152,7 +152,10 @@ public class PlayerController : MonoBehaviour
                 if (!attacking)
                 {
                     FightManager.Instance.OnPlayerHit(playerID == Constants.PLAYER_1_TAG ? Constants.PLAYER_1_TAG : Constants.PLAYER_2_TAG);
-                    collision.enabled = false;
+                    if (collision.gameObject.name == "HitObjectCollider")
+                        collision.enabled = false;
+                    else if (this.gameObject.name == "HitObjectCollider")
+                        collision.enabled = false;
                 }
             }
         }

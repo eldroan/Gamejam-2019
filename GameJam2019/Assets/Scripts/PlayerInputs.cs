@@ -53,7 +53,6 @@ public class PlayerInputs
                 new Action { Name = Constants.SELECT, Button = "Select1"},
                 new Action { Name = Constants.ESCAPE, Button = "Escape1"}
 
-
             }
         },
         { Constants.PLAYER_2_TAG, new List<Action>
@@ -72,7 +71,7 @@ public class PlayerInputs
     internal static bool GetKeyDown(string player, string action)
     {
         var joyst = Input.GetJoystickNames();
-        Debug.Log(joyst.Length);
+
         if (joyst.Length == 1)
         {
             if (player == Constants.PLAYER_2_TAG)
@@ -87,7 +86,10 @@ public class PlayerInputs
 
         if (joyst.Length == 2)
         {
-                return Input.GetButtonDown(playerInputCollectionJoystick.Select(x => x).Where(x => x.Key == player).FirstOrDefault().Value.Select(x => x).Where(x => x.Name == action).FirstOrDefault().Button);
+            var a = playerInputCollectionJoystick.Select(x => x).Where(x => x.Key == player).FirstOrDefault();
+            var b = a.Value.Select(x => x).Where(x => x.Name == action).FirstOrDefault();
+            var button = b.Button;
+            return Input.GetButtonDown(button);
         }
 
         return Input.GetKeyDown(playerInputCollection.Select(x => x).Where(x => x.Key == player).FirstOrDefault().Value.Select(x => x).Where(x => x.Name == action).FirstOrDefault().KeyCode);
@@ -162,9 +164,9 @@ public class PlayerInputs
                 if (Input.GetAxis("HorizontalJ1") > 0 && action == Constants.RIGHT)
                     return true;
 
-                if (Input.GetAxis("VerticalJ1") < 0 && action == Constants.DOWN)
+                if (Input.GetAxisRaw("VerticalJ1") < 0 && action == Constants.DOWN)
                     return true;
-                if (Input.GetAxis("VerticalJ1") > 0 && action == Constants.UP)
+                if (Input.GetAxisRaw("VerticalJ1") > 0 && action == Constants.UP)
                     return true;
 
                 return false;
@@ -184,9 +186,9 @@ public class PlayerInputs
                     return true;
                 if (Input.GetAxis("HorizontalJ1") > 0 && action == Constants.RIGHT)
                     return true;
-                if (Input.GetAxis("VerticalJ1") < 0 && action == Constants.DOWN)
+                if (Input.GetAxisRaw("VerticalJ1") < 0 && action == Constants.DOWN)
                     return true;
-                if (Input.GetAxis("VerticalJ1") > 0 && action == Constants.UP)
+                if (Input.GetAxisRaw("VerticalJ1") > 0 && action == Constants.UP)
                     return true;
                 return false;
             }
@@ -196,9 +198,9 @@ public class PlayerInputs
                     return true;
                 if (Input.GetAxis("HorizontalJ2") > 0 && action == Constants.RIGHT)
                     return true;
-                if (Input.GetAxis("VerticalJ2") < 0 && action == Constants.DOWN)
+                if (Input.GetAxisRaw("VerticalJ2") < 0 && action == Constants.DOWN)
                     return true;
-                if (Input.GetAxis("VerticalJ2") > 0 && action == Constants.UP)
+                if (Input.GetAxisRaw("VerticalJ2") > 0 && action == Constants.UP)
                     return true;
                 return false;
             }

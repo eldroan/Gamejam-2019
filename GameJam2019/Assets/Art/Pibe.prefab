@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6507464574737250410}
   - component: {fileID: 8189045445379126896}
   m_Layer: 0
-  m_Name: HitObject
+  m_Name: HitObjectCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,6 +143,7 @@ MonoBehaviour:
   Animator: {fileID: 4472835734570499953}
   bluntObject: {fileID: 0}
   bluntObjectSpawnPosition: {fileID: 0}
+  playerIDTest: 
 --- !u!50 &5538527502587163040
 Rigidbody2D:
   serializedVersion: 4
