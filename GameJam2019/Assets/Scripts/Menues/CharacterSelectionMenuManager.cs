@@ -73,6 +73,7 @@ public class CharacterSelectionMenuManager : MonoBehaviour
     { 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            StartCoroutine(GenericFunctions.FadeOutSound(1.5f, audioSource, 0f));
             StartCoroutine(GenericFunctions.FadeInImage(.75f, fadeImage, "MainMenu"));
         }
 
