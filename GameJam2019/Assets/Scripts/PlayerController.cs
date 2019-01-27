@@ -38,12 +38,12 @@ public class PlayerController : MonoBehaviour
         if (remainingBlockDelay > 0)
                 remainingBlockDelay -= Time.deltaTime;
 
-        if (isGrounded && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)))
+        if (isGrounded && (Input.GetKeyDown(PlayerInputs.GetKey(PlayerID, Constants.JUMP))))
         {
-            this.Animator.SetTrigger("Jump");
+            this.Animator.SetTrigger(Constants.JUMP);
             myRigidbody2D.velocity = new Vector3(0f, jumpForce, 0f);
         }
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(PlayerInputs.GetKey(PlayerID, Constants.LEFTH)))
         {
             if (isGrounded)
             {
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
             
             this.transform.rotation = new Quaternion(0f, 180f, 0f, 1f);
         }
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(PlayerInputs.GetKey(PlayerID, Constants.RIGHT)))
         {
             if (isGrounded)
             {
@@ -76,16 +76,16 @@ public class PlayerController : MonoBehaviour
             myRigidbody2D.velocity = new Vector3(0f, myRigidbody2D.velocity.y, 0f);
         }
 
-        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
+        if (Input.GetKeyUp(PlayerInputs.GetKey(PlayerID, Constants.RIGHT)))
         {
             this.Animator.SetTrigger("StopWalk");
         }
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
+        if (Input.GetKeyUp(PlayerInputs.GetKey(PlayerID, Constants.LEFTH)))
         {
             this.Animator.SetTrigger("StopWalk");
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && remainingAttackDelay <= 0)
+        if (Input.GetKeyDown(PlayerInputs.GetKey(PlayerID, Constants.ATTACK)) && remainingAttackDelay <= 0)
         {
             this.Animator.SetTrigger("Attack");
             this.remainingAttackDelay = this.attackDelay;
@@ -98,9 +98,10 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.X) && remainingBlockDelay <= 0)
+        if (Input.GetKeyDown(PlayerInputs.GetKey(PlayerID, Constants.BLOCK)) && remainingBlockDelay <= 0)
         {
             this.Animator.SetTrigger("Block");
+            this.bloking = true;
             this.remainingBlockDelay = this.blockDelay;
         }
     }
