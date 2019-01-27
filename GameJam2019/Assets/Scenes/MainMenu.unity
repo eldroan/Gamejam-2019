@@ -2315,7 +2315,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee00c3ab611fb0347930e089cc32338e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characters: []
+  characters:
+  - Id: 0
+    Name: Abuela
+    Hits: 0
+    Prefab: {fileID: 1394785373890644960, guid: 6a11652abf4d7c740b8072100189b9f4,
+      type: 3}
+  - Id: 1
+    Name: Pibe
+    Hits: 0
+    Prefab: {fileID: 1394785373890644960, guid: 6a11652abf4d7c740b8072100189b9f4,
+      type: 3}
+  - Id: 2
+    Name: Piba
+    Hits: 0
+    Prefab: {fileID: 1394785373890644960, guid: 6a11652abf4d7c740b8072100189b9f4,
+      type: 3}
 --- !u!4 &2058375586
 Transform:
   m_ObjectHideFlags: 0
