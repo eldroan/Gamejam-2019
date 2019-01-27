@@ -5,7 +5,7 @@ using UnityEngine;
 public class BluntObject : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 3f;
+    private float speed = 12f;
 
     private bool travelling = false;
 
@@ -13,11 +13,14 @@ public class BluntObject : MonoBehaviour
     {
         if (travelling)
         {
-            this.transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            this.transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
+
     }
     public void Shoot()
     {
         this.travelling = true;
+
+        Destroy(this.gameObject, 4f);
     }
 }

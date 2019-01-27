@@ -1,52 +1,47 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class FightManager : MonoBehaviour
 {
     [SerializeField] private float fightDuration = 120;
-    [SerializeField] private Text remainingTimeText;
+    [SerializeField] private TextMeshProUGUI remainingTimeText;
     [SerializeField] private GameObject deathmatchText;
     [SerializeField] private TextMeshProUGUI victoryText;
     [SerializeField] private float deathmatchMessegeTime = 2;
     [SerializeField] private TextMeshProUGUI playerANameText;
     [SerializeField] private TextMeshProUGUI playerBNameText;
-    [SerializeField] private TextMeshProUGUI playerAHitsText;
-    [SerializeField] private TextMeshProUGUI playerBHitsText;
     [SerializeField] private bool isTesting;
-    [SerializeField] private GameObject defaultCharacterAPrefab;
-    [SerializeField] private GameObject defaultCharacterBPrefab;
+    [SerializeField] private Transform playerASpawnPoint;
+    [SerializeField] private Transform playerBSpawnPoint;
 
     public static FightManager Instance { get; private set; }
 
-    //[HideInInspector] public CharacterScript PlayerACharacter;
-    //[HideInInspector] public CharacterScript PlayerBCharacter;
 
     private float RemaingTime;
     private bool OnDeathmatch;
     private float DeathmatchTime;
+
+    private int playerAHits = 0;
+    private int playerBHits = 0;
 
     private void Awake()
     {
         if (Instance == null)
             Instance = new FightManager();
 
-        //if (isTesting)
-        //{
-        //    this.PlayerACharacter = Instantiate(defaultCharacterAPrefab).GetComponent<CharacterScript>();
-        //    this.PlayerBCharacter = Instantiate(defaultCharacterBPrefab).GetComponent<CharacterScript>();
-        //}
 
         if (Session.Instance != null)
         {
-            var a = CharacterBundle.Instance.GetCharacter(Session.Instance.PlayerA);
-            var b = CharacterBundle.Instance.GetCharacter(Session.Instance.PlayerB);
+            var playerA = CharacterBundle.Instance.GetCharacter(Session.Instance.PlayerA);
+            var playerB = CharacterBundle.Instance.GetCharacter(Session.Instance.PlayerB);
 
-            var ao = Instantiate(a.Prefab);
-            var bo = Instantiate(b.Prefab);
+            var playerAObject = Instantiate(playerA.Prefab, playerASpawnPoint.position, playerASpawnPoint.rotation);
+            var playerBObject = Instantiate(playerB.Prefab, playerBSpawnPoint.position, playerBSpawnPoint.rotation);
 
-            ao.tag = "Player 1";
-            bo.tag = "Player 2";
+            playerAObject.tag = Constants.PLAYER_1_TAG;
+            playerBObject.tag = Constants.PLAYER_2_TAG;
 
             this.RemaingTime = fightDuration;
             this.UpdateRemaingTimeText(this.RemaingTime);
@@ -54,11 +49,9 @@ public class FightManager : MonoBehaviour
             this.deathmatchText.SetActive(false);
             this.DeathmatchTime = 0;
 
-            this.playerANameText.text = a.Name;
-            this.playerBNameText.text = b.Name;
+            this.playerANameText.text = playerA.Name;
+            this.playerBNameText.text = playerB.Name;
 
-            //this.PlayerACharacter.HitsText = this.playerAHitsText;
-            //this.PlayerBCharacter.HitsText = this.playerBHitsText;
         }
     }
 
@@ -88,8 +81,8 @@ public class FightManager : MonoBehaviour
     {
         this.OnDeathmatch = true;
         this.deathmatchText.SetActive(true);
-        //this.PlayerACharacter.Hits = 2;
-        //this.PlayerBCharacter.Hits = 2;
+        this.playerAHits = 2;
+        this.playerBHits = 2;
     }
 
     private void UpdateRemaingTimeText(float remaingTime)
@@ -104,14 +97,28 @@ public class FightManager : MonoBehaviour
         }
     }
 
-    public void OnPlayerHit(CharacterScript character)
+    public void OnPlayerHit(string playerID)
     {
-        character.Hits += 1;
-        if (character.Hits == 3)
+        if (playerID == Constants.PLAYER_1_TAG)
         {
-            this.victoryText.text = character.Name;
-            this.victoryText.gameObject.SetActive(true);
-            Debug.Log("Won " + character.Name);
+            this.playerAHits++;
+
+            if (playerAHits == 3)
+                Finish(playerID);
+
         }
+        else if (playerID == Constants.PLAYER_2_TAG)
+        {
+            this.playerBHits++;
+
+            if (playerAHits == 3)
+                Finish(playerID);
+        }
+    }
+
+    private void Finish(string playerID)
+    {
+        Time.timeScale = 0;
+        //TODO fin del juego
     }
 }

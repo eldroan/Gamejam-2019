@@ -21,6 +21,10 @@ public class PlayerController : MonoBehaviour
     private float remainingAttackDelay;
     private float remainingBlockDelay;
 
+    private bool bloking;
+
+    public string PlayerID { get; set; }
+
     private void Awake()
     {
         myRigidbody2D = this.GetComponent<Rigidbody2D>();
@@ -89,6 +93,7 @@ public class PlayerController : MonoBehaviour
             if (bluntObject != null)
             {
                 var go = Instantiate(bluntObject, bluntObjectSpawnPosition.position, this.transform.rotation);
+                go.tag = this.gameObject.tag;
                 go.GetComponent<BluntObject>()?.Shoot();
             }
         }
@@ -114,5 +119,20 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }      
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag != this.gameObject.tag)
+        {
+            if (bloking)
+            {
+                //TODO ruido bloquear
+            }
+            else
+            {
+                FightManager.Instance.OnPlayerHit(PlayerID == Constants.PLAYER_1_TAG ? Constants.PLAYER_1_TAG : Constants.PLAYER_2_TAG);
+            }
+        }
     }
 }
