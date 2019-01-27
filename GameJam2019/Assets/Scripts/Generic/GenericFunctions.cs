@@ -11,7 +11,6 @@ public class GenericFunctions : MonoBehaviour
     // ////////////////////////////////////////////////////////
     // Image Processing Functions
     // --------------------------------------------------------
-
 	// Fade in image with fade time and then load a new scene
     public static IEnumerator FadeInImage(float fadeTime, Image img, string nextScene)
 	{
@@ -62,4 +61,19 @@ public class GenericFunctions : MonoBehaviour
 			yield return null;
 		}
 	}
+
+	// ////////////////////////////////////////////////////////
+    // Audio Processing Functions
+    // --------------------------------------------------------
+	// Fade out sound with fade time
+ 	public static IEnumerator FadeOutSound(float fadeTime, AudioSource audioSource, float minVolume)
+    {
+		float startVolume = audioSource.volume;
+        while(audioSource.volume > minVolume)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / fadeTime;
+			yield return null;
+        }
+        audioSource.volume = minVolume;
+    }
 }
